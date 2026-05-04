@@ -1,0 +1,176 @@
+ <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+<!-- Include Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- Wrapper Container for the Recently Viewed Section -->
+<div class="recently-viewed-container">
+  <!-- Section Title -->
+  <div class="recently-title">
+    <h2 class="title inline-richtext h2 scroll-trigger animate--slide-in"><b>Recently Viewed</b></h2>
+  </div>
+
+  <!-- Clear Recently Viewed Link -->
+  <div class="clear-recently-viewed" onclick="clearRecentlyViewed()">
+    <span>Clear Recently Viewed</span>
+  </div>
+
+  <!-- Swiper Container for Products -->
+  <div class="recently-swiper-container">
+    <div class="swiper-wrapper js-recentPdpBlock">
+      <!-- Product items will be injected here dynamically -->
+    </div>
+
+    <!-- Swiper Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Swiper Navigation buttons -->
+    <div class="swiper-button-next">.</div>
+    <div class="swiper-button-prev">.</div>
+  </div>
+</div>
+
+ <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+<script>
+function setRecentlyViewedPdp() {
+  const pdpData = {
+    productTitle: "{{ product.title }}",
+    productImg: "{{ product.featured_image | img_url: '' }}",
+    productPrice: "{{ product.price | money | remove_first: '' }}",
+    productUrl: "{{ product.url }}"
+  };
+  const productArr = [];
+  let jsonResp, jsonRespArr, jsonRespArrStr;
+  const numberOfProduct = 15;  
+  productArr.push(pdpData);
+  const currPdpTitle = pdpData.productTitle;
+  const pdpDataString = JSON.stringify(productArr);
+  const localData = localStorage.getItem('recently_viewed');
+  
+  if (localData == null) {
+    localStorage.setItem('recently_viewed', pdpDataString);  
+  } else {
+    const oldPdpData = JSON.parse(localData);
+    const countPdpData = oldPdpData.length;
+    const reVisitPdp = oldPdpData.some(product => product.productTitle === currPdpTitle);
+
+    if (reVisitPdp == false) {
+      oldPdpData.unshift(pdpData); 
+
+      if (oldPdpData.length > numberOfProduct) {
+        oldPdpData.pop();  
+      }
+    }
+
+    localStorage.setItem('recently_viewed', JSON.stringify(oldPdpData));
+  }
+}
+
+setRecentlyViewedPdp();
+
+function getRecentPdp() {
+  const pdpData = JSON.parse(localStorage.getItem('recently_viewed'));
+
+  if (!pdpData || pdpData.length === 0) return;
+
+  const recentViewHtml = [];
+  pdpData.forEach(function(item) {
+   
+    if (item.productTitle && item.productImg && item.productUrl && item.productPrice) {
+      recentViewHtml.push(`
+        <div class="swiper-slide recent-view-card">
+          <section id="Recent">
+            <div class="c-product">
+              
+              
+             <div class="c-product__img"> 
+               <a href="${item.productUrl}">
+                 <img src='${item.productImg}' alt="${item.productTitle}"/>
+                </a> 
+              </div> 
+              <h3 class="c-product__title"> 
+                <a class="c-product__url" href="${item.productUrl}"> ${item.productTitle} </a> 
+              </h3> <p class="c-productPrice">${item.productPrice}</p>
+            </div>
+          </section>
+        </div>
+      `);
+    }
+  });
+
+  if (recentViewHtml.length > 0) {
+    const recentBlock = recentViewHtml.join('');
+    const contentBlock = document.querySelector('.js-recentPdpBlock');
+    contentBlock.innerHTML = recentBlock;
+
+    const swiper = new Swiper('.recently-swiper-container', {
+      slidesPerView: 5,  
+      spaceBetween: 10,  
+      loop: true,  
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',  
+        prevEl: '.swiper-button-prev',  
+      },
+      breakpoints: {
+        1024: {
+          slidesPerView: 5, 
+        },
+        768: {
+          slidesPerView: 3, 
+        },
+        576: {
+          slidesPerView: 2, 
+        },
+      },
+    });
+  }
+}
+
+getRecentPdp();
+
+function clearRecentlyViewed() {
+  localStorage.removeItem('recently_viewed');
+
+  const contentBlock = document.querySelector('.js-recentPdpBlock');
+  contentBlock.innerHTML = '';  
+
+  const swiperContainer = document.querySelector('.recently-swiper-container');
+  swiperContainer.style.display = 'none';  
+
+  const messageBlock = document.createElement('div');
+  messageBlock.textContent = "No recently viewed products.";
+  messageBlock.style.textAlign = 'center';
+  messageBlock.style.fontSize = '18px';
+  messageBlock.style.marginTop = '20px';
+  swiperContainer.appendChild(messageBlock);
+}
+</script>
+
+<style>
+
+.c-product {
+    cursor: pointer;
+    text-align: center;
+    padding: 1.015625rem;
+    background-color: #fff;
+    width: 200px;
+    height: auto;
+}
+  
+.c-product__time {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.recently-title-main-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+</style>

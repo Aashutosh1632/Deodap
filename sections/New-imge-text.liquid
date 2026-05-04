@@ -1,0 +1,464 @@
+{{ 'New-imge-text.css' | asset_url | stylesheet_tag: preload: true }}
+<script src="{{ 'New-imge-text.js' | asset_url }}" defer="defer"></script>
+
+<div class="NEWW-im-tx {{ section.settings.dif_class }} page-width">
+  <div
+    class="{{ section.settings.section_id }} image-with-text"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="NEWW-im-tx-h2">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
+      <div class="NEWW-im-tx-p">{{ section.settings.subheading }}</div>
+    {% endif %}
+    <div class="NEW-image-texts">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'multiple-images' %}
+            <div class="mul-img-{{ forloop.index }}-{{ forloop.index }} {{ block.settings.text_alignment }}">
+              {% for i in (1..4) %}
+                {% assign image_key = 'image' | append: i %}
+                {% assign image = block.settings[image_key] %}
+                {% assign width_key = 'img_width' | append: i %}
+                {% assign img_width = block.settings[width_key] %}
+                {% assign text_key = 'text' | append: i %}
+                {% assign text = block.settings[text_key] %}
+                {% assign text_key = 'textss' | append: i %}
+                {% assign textss = block.settings[text_key] %}
+                <div class="img-ml-txt">
+                  {% if image != blank %}
+                    <div class="ml-im" style="width: {{ img_width }}%;">
+                      <img src="{{ image | img_url: '' }}" class="mul-im">
+                    </div>
+                    <div class="ml-txttt">
+                      <p
+                        style="font-size: {{ block.settings.t1size}}px;"
+                      >
+                        {{ text }}
+                      </p>
+                      <div
+                        class="add-t"
+                        style="font-size: {{ block.settings.d1size }}px;"
+                      >
+                        {{ textss }}
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+              {% if block.settings.btn_txtt != blank %}
+                <div class="Mewmult-BT">
+                  <a class="Mewmult-btns anim_btn" href="#{{ block.settings.btn_id }}">{{ block.settings.btn_txtt }}</a>
+                </div>
+                <script>
+                                      document.querySelectorAll('.Mewmult-btns').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      const targetId = this.getAttribute('href').substring(1);
+                      const targetElement = document.getElementById(targetId);
+                      if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    });
+                  });
+                </script>
+              {% endif %}
+            </div>
+          {% when 'image' %}
+            <div class="single-image">
+              {% if block.settings.image != blank %}
+                <a href="#{{ block.settings.ihref }}">
+                  <img src="{{ block.settings.image | img_url: '' }}" class="sing-img desknogp ">
+                  <img src="{{ block.settings.mb_image | img_url: '' }}" class="sing-img mobnogp">
+                </a>
+             
+              {% endif %}
+            </div>
+          {% when 'text' %}
+            <div
+              class="custom-text-blc {{ block.settings.text_alignment }}"
+              style="width: {{ block.settings.width-tx }}%; margin: 0 auto;"
+            >
+              {% if block.settings.image_txt != blank %}
+                <img src="{{ block.settings.image-txt | img_url: '' }}" class="img-tx">
+              {% endif %}
+              {% if block.settings.heading != blank %}
+                <h2 class="cst-it-h2">{{ block.settings.heading }}</h2>
+              {% endif %}
+
+              {% if block.settings.content != blank %}
+                <p class="cst-it-p">{{ block.settings.content }}</p>
+              {% endif %}
+
+              {% if block.settings.btn_text != blank %}
+                <a href="{{ block.settings.btn_url }}">{{ block.settings.btn_text }}</a>
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<style>
+    @keyframes shake_msg {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-15px); }
+    40% { transform: translateX(15px); }
+    60% { transform: translateX(-15px); }
+    80% { transform: translateX(15px); }
+    100% { transform: translateX(0); }
+  }
+
+  .anim_btn.shake_msg {
+    animation: shake_msg 0.5s ease; /* Adjusted for a quick shake_msg */
+  }
+</style>
+{% schema %}
+{
+  "name": "GP-New-imge-text",
+  "settings": [
+      {
+          "type": "text",
+          "id": "section_id",
+          "label": "section_id",
+        "default":"new-image-tx"
+        },
+     {
+          "type": "text",
+          "id": "dif_class",
+          "label": "Add class for extra css"
+        },
+      {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+      {
+          "type": "richtext",
+          "id": "subheading",
+          "label": "Sub Heading"
+        },
+
+    {
+          "type": "text",
+          "id": "width",
+          "label": "section width"
+
+       },
+ {
+          "type": "range",
+          "id": "show_block",
+          "label": "Column",
+          "min": 1,
+          "max":10,
+          "step": 1,
+          "unit": "px",
+          "default":3
+       },
+     {
+          "type": "range",
+          "id": "mb_block",
+          "label": "mobile Column",
+          "min": 1,
+          "max":10,
+          "step": 1,
+          "unit": "px",
+          "default":3
+       },
+     {
+          "type": "range",
+          "id": "column_gap",
+          "label": "column gap",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":60
+       },
+    {
+          "type": "range",
+          "id": "mb_column_gap",
+          "label": "mobile column gap",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":60
+       },
+    {
+          "type": "range",
+          "id": "padding-top",
+          "label": "Section Padding Top",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "unit": "px",
+          "default":40
+       },
+      {
+          "type": "range",
+          "id": "padding-bottom",
+          "label": "Section Padding Bottom",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "unit": "px",
+          "default":40
+       },
+      {
+          "type": "range",
+          "id": "margin-top",
+          "label": "Section Margin Top",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "unit": "px",
+          "default":20
+       },
+      {
+          "type": "range",
+          "id": "margin-bottom",
+          "label": "Section Margin Bottom",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "unit": "px",
+          "default":20
+       },
+       {
+          "type": "color",
+          "id": "background",
+          "label": "Background Color",
+          "default": "#fff"
+        },
+      {
+          "type": "color",
+          "id": "text-color",
+          "label": "Text Color",
+          "default": "#000000"
+        }
+  ],
+  "blocks": [
+    {
+      "type": "multiple-images",
+      "name": "Multiple images",
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Image 1"
+        },
+
+         {
+          "type": "text",
+          "id": "text1",
+          "label": "text 1"
+        },
+
+        {
+          "type": "richtext",
+          "id": "textss1",
+          "label": "description"
+        },
+          {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Image 2"
+        },
+
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "text 2"
+        },
+        {
+          "type": "richtext",
+          "id": "textss2",
+          "label": "description"
+        },
+          {
+          "type": "image_picker",
+          "id": "image3",
+          "label": "Image 3"
+        },
+
+        {
+          "type": "text",
+          "id": "text3",
+          "label": "text 3"
+        },
+        {
+          "type": "richtext",
+          "id": "textss3",
+          "label": "description"
+        },
+
+         {
+          "type": "text",
+          "id": "btn_txtt",
+          "label": "button text"
+        },
+        {
+          "type": "text",
+          "id": "btn_id",
+          "label": "button id"
+        },
+         {
+          "type": "image_picker",
+          "id": "image4",
+          "label": "Image 4"
+        },
+
+        {
+          "type": "text",
+          "id": "text4",
+          "label": "text 4"
+        },
+        {
+          "type": "richtext",
+          "id": "textss4",
+          "label": "description"
+        },
+          {
+      "id": "text_alignment",
+      "type": "text_alignment",
+      "label": "Alignment",
+      "default": "left"
+    },
+          {
+          "type": "range",
+          "id": "img_width1",
+          "label": "Image1 width",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":40
+       },
+         {
+          "type": "range",
+          "id": "img_width2",
+          "label": "Image2 width",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":40
+       },
+         {
+          "type": "range",
+          "id": "img_width3",
+          "label": "Image3 width",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":40
+       },
+         {
+          "type": "range",
+          "id": "img_width4",
+          "label": "Image4 width",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":40
+       },
+        {
+    "type": "range",
+    "id": "t1size",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "label": "text font size",
+    "default":21,
+      "info": "this font size apply in all text1 text2 and text3 "
+  },
+         {
+    "type": "range",
+    "id": "d1size",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "label": "description font size",
+    "default":15,
+      "info": "this font size apply in all des1 des2 and des3 "
+  }
+      ]
+    },
+     {
+      "type": "text",
+      "name": "text",
+      "settings": [
+           {
+      "id": "text_alignment",
+      "type": "text_alignment",
+      "label": "text-alignment",
+      "default": "left"
+    },
+          {
+          "type": "range",
+          "id": "width-tx",
+          "label": "width",
+          "min": 0,
+          "max":100,
+          "step": 1,
+          "default":90
+       },
+        {
+          "type": "image_picker",
+          "id": "image_txt",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "content"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button url"
+        },
+          {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text"
+        }
+
+      ]
+    },
+    {
+      "type": "image",
+      "name": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+         {
+          "type": "image_picker",
+          "id": "mb_image",
+          "label": "Mobile Image"
+        },
+  {
+          "type": "text",
+          "id": "ihref",
+          "label": "link Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GP-New-imge-text"
+    }
+  ]
+}
+{% endschema %}

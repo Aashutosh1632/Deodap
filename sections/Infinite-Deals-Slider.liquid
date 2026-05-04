@@ -1,0 +1,162 @@
+{% schema %}
+{
+  "name": "Infinite Deals Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Deal Of The Week"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Infinite Deals Slider"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.slider-section {
+  padding: 0px 0;
+  overflow: hidden;
+}
+
+.slider-heading {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+/* Pause on hover */
+.slider-wrapper:hover .slider-track {
+  animation-play-state: paused;
+}
+
+.slide-item {
+  min-width: 200px;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.slide-item img {
+  width: 100%;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+
+.slide-title {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Infinite animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slide-item {
+    width: 200px;
+    margin-right: 12px;
+  }
+
+  .slider-heading {
+    font-size: 20px;
+  }
+
+  .slide-title {
+    font-size: 13px;
+  }
+}
+
+
+
+.slider-wrapper {
+  cursor: grab;
+}
+
+.slider-wrapper.dragging {
+  cursor: grabbing;
+}
+</style>
+
+<div class="slider-section">
+  <div class="page-width">
+    <div class="slider-heading">{{ section.settings.heading }}</div>
+
+    <div class="slider-wrapper">
+      <div class="slider-track">
+
+        {% for block in section.blocks %}
+          <div class="slide-item">
+            <a href="{{ block.settings.link }}">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | image_url: width: 400 }}">
+              {% endif %}
+            </a>
+            <div class="slide-title">{{ block.settings.title }}</div>
+          </div>
+        {% endfor %}
+
+        <!-- Duplicate for seamless infinite scroll -->
+        {% for block in section.blocks %}
+          <div class="slide-item">
+            <a href="{{ block.settings.link }}">
+              {% if block.settings.image %}
+                <img src="{{ block.settings.image | image_url: width: 400 }}">
+              {% endif %}
+            </a>
+            <div class="slide-title">{{ block.settings.title }}</div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</div>

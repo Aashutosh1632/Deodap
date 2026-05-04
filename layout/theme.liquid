@@ -1,0 +1,401 @@
+<!doctype html>
+<html class="js" lang="{{ request.locale.iso_code }}">
+   <head>
+      {%- if settings.goEnable -%}
+      <link rel="dns-prefetch" href="https://pdp.gokwik.co/">
+      <link rel="dns-prefetch" href="https://api.gokwik.co">
+      {%- render 'gokwik' -%}
+      {%- endif -%}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-J73G2Y58J4"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config','G-J73G2Y58J4',{ 'groups': 'GA4'});
+      </script>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="google-adsense-account" content="ca-pub-8932742283941573">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name="theme-color" content="">
+      {%- if template contains 'collection' and current_tags -%}
+      <meta name="robots" content="noindex">
+      <link rel="canonical" href="{{ shop.url }}{{ collection.url }}">
+      {%- elsif template contains 'collection' -%}
+      <link rel="canonical" href="{{ shop.url }}{{ collection.url }}">
+      {%- elsif template contains 'product' -%}
+      <link rel="canonical" href="{{ shop.url }}/products/{{ product.handle }}">
+      {%- else -%}
+      <link rel="canonical" href="{{ canonical_url }}">
+      {%- endif -%}
+      {%- if template contains 'blog' -%}
+      <link rel="canonical" href="{{ shop.url }}/blogs/{{ blog.handle }}">
+      {%- endif -%}
+      {%- if current_page > 1 -%}
+      <meta name="robots" content="noindex, follow">
+      {%- endif -%}
+      {%- if request.page_type == 'collection' and request.path contains '?' -%}
+      <meta name="robots" content="noindex, follow">
+      {%- endif -%}
+      {%- assign noindex_handles = 'mobile-cover-page,snacks-page,home-and-appliances,google-adsense-test-page,menu-json,related-product,shop-the-look' | split: ',' -%}
+      {%- if template == 'page' and noindex_handles contains page.handle -%}
+      <meta name="robots" content="noindex">
+      {%- endif -%}
+      {%- if template == 'index' -%}
+      <style>
+         main#MainContent {display: flex;flex-direction: column;} svg.abcd {margin-bottom: -80px;}
+      </style>
+      {%- endif -%}
+      {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      {%- endif -%}
+      {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+      {%- endunless -%}
+      <title>
+         {{ page_title }}
+         {%- if current_tags %} – tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+         {%- if current_page != 1 %} – Page {{ current_page }}{% endif -%}
+         {%- unless template contains 'product' or template contains 'collection' or page_title contains shop.name -%}
+         – {{ shop.name }}
+         {%- endunless -%}
+      </title>
+      {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+      {%- endif -%}
+      {%- render 'meta-tags' -%}
+      <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+      {%- unless template == 'index' or template == 'product' -%}
+      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+      {%- endunless -%}
+      {%- if settings.animations_reveal_on_scroll -%}
+      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
+      {%- endif -%}
+      {{ content_for_header }}
+      {%- render 'css-variable' -%}
+      {%- unless template == 'index' -%}
+      {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+      {%- endunless -%}
+      {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+      {{ 'custom-css.css' | asset_url | stylesheet_tag: preload: true }}
+      <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+      {{ 'custom_mega_menu_css.css' | asset_url | stylesheet_tag: preload: true }}
+      {%- unless template == 'index' or template == 'product' -%}
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+      {%- endunless -%}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
+      <noscript>
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap">
+      </noscript>
+      {%- if settings.cart_type == 'drawer' -%}
+      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+      {{ 'component-cart.css' | asset_url | stylesheet_tag }}
+      {{ 'component-totals.css' | asset_url | stylesheet_tag: preload: true }}
+      {{ 'component-price.css' | asset_url | stylesheet_tag }}
+      {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+      {%- endif -%}
+      {%- unless settings.type_body_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      {%- endunless -%}
+      {%- unless settings.type_header_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+      {%- endunless -%}
+      {%- if template contains 'addresses' or template contains 'account' -%}
+      <link rel="preload" as="style" href="{{ 'new-account.css' | asset_url }}">
+      {{ 'new-account.css' | asset_url | stylesheet_tag }}
+      <link rel="preload" as="style" href="{{ 'account-recently-viewed.css' | asset_url }}">
+      {{ 'account-recently-viewed.css' | asset_url | stylesheet_tag }}
+      {%- endif -%}
+      {%- if template.suffix == 'shipment-tracking' -%}
+      <link rel="preload" as="style" href="{{ 'shipping-tracking.css' | asset_url }}">
+      {{ 'shipping-tracking.css' | asset_url | stylesheet_tag }}
+      {%- endif -%}
+      {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
+      {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
+      <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+      {%- endif -%}
+      {%- if settings.predictive_search_enabled -%}
+      <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
+      {%- endif -%}
+      <script>
+         if (Shopify.designMode) {  document.documentElement.classList.add('shopify-design-mode');  }
+      </script>
+      <style>
+         {%- if template == 'cart' -%}.back-to-top.active-progress {display: none;}div#chat-widget {display: none !important;}{%- endif -%}
+         @media(max-width: 767px){ footer .footer-block__details-content {   display: none;    }   }{%- if page == 'cart' -%}.cart-item__image { height: auto; width: 70px; }{%- endif -%}
+         {%- if collection.handle == 'mega-sale' or card_product.tags == 'Including Tax' -%}span.tag.tag-freeship-include-txt {left: 0;bottom: unset;position: absolute;z-index: 1;color: #0d1627 !important;font-weight: 400 !important;color: #fff;font-weight: 600;width: fit-content;text-align: center;padding: 5px;background-color: #eee !important;font-size: 13px;line-height: normal;}{%- endif -%}
+         {%- if template == 'index' -%}.whatmore-minimized-video-view-right { display: none;}{%- endif -%}
+         {%- if template == 'collection' -%}.jdgm-widget.jdgm-preview-badge.jdgm--done-setup {display: block !important;min-height: 21px !important;}{%- endif -%}
+      </style>
+      
+      <!-- Google Tag Manager — interaction deferred -->
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        function _loadGTM() {
+          if (window._gtmLoaded) return;
+          window._gtmLoaded = true;
+          (function(w,d,s,l,i){
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),
+                dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-5W7H98N');
+        }
+
+        // Fire on first interaction OR after 3s (whichever comes first)
+        ['scroll','click','touchstart','keydown','mousemove'].forEach(function(evt) {
+          window.addEventListener(evt, _loadGTM, {once: true, passive: true});
+        });
+        setTimeout(_loadGTM, 3000);
+      </script>
+      <!-- End Google Tag Manager -->
+
+      {%- if template.name == 'article' -%}
+      <style>
+         .subcollections-menu__menu-items h2, h6, .highlights-banner__heading, h5, h4, .featured-collection__title-card-heading, h3, h2, .slideshow-slide__heading, h1, .age-gate__heading { text-transform: none !important;}
+         a, .a, span, .span, p, .p, h2, .h2, h1, .h1, h3, .h3, h4, .h4, h5, .h5, h6, .h6 strong, .strong{ word-wrap: break-word;}
+         .rte blockquote { display: block !important;}
+      </style>
+      {%- endif -%}
+      <style>
+         .whatsapp.FadeIn{ display:none !important;}
+      </style>
+      <script>
+        // Microsoft Clarity — deferred until interaction
+        window.clarity = window.clarity || function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
+
+        function _loadClarity() {
+          if (window._clarityLoaded) return;
+          window._clarityLoaded = true;
+          var t = document.createElement('script');
+          t.async = 1;
+          t.src = "https://www.clarity.ms/tag/j4qxmntvel";
+          document.head.appendChild(t);
+        }
+
+        ['scroll','click','touchstart'].forEach(function(evt) {
+          window.addEventListener(evt, _loadClarity, {once: true, passive: true});
+        });
+        setTimeout(_loadClarity, 5000);
+      </script>
+      <script>
+      // Bing UET — load after GTM is ready (interaction-triggered)
+      window.uetq = window.uetq || [];
+      window.uetq.push('set', { 'pid': {
+        'em': '{{ customer.email | downcase | sha256 }}',
+        'ph': '{{ customer.default_address.phone }}'
+      }});
+
+      function _loadBingUET() {
+        if (window._uetLoaded) return;
+        window._uetLoaded = true;
+        var s = document.createElement('script');
+        s.src = '{{ "microsoft-ads.js" | asset_url }}';
+        s.async = true;
+        document.head.appendChild(s);
+      }
+
+      ['scroll','click','touchstart'].forEach(function(evt) {
+        window.addEventListener(evt, _loadBingUET, {once: true, passive: true});
+      });
+      setTimeout(_loadBingUET, 4000);
+    </script>
+   </head>
+   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+
+      {%- if template == 'index' -%}<h1 class="seo-only">Online Shopping Site for Home, Electronics, Kitchen & More</h1>{%- endif -%}
+
+      <!-- Google Tag Manager (noscript) -->
+      <noscript ><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W7H98N" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+      <a class="skip-to-content-link button visually-hidden" href="#MainContent">{{ 'accessibility.skip_to_text' | t }}</a>
+      {%- if settings.cart_type == 'drawer' -%}{%- render 'cart-drawer' -%}{%- endif -%}
+      {%- sections 'header-group' -%}
+      {%- sections 'Breadcrumb' -%}
+      <main id="MainContent" class="content-for-layout focus-none page-{{ template.name }}" role="main" tabindex="-1">
+         {{ content_for_layout }}
+      </main>
+      {%- sections 'footer-group' -%}
+      <ul hidden>
+         <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+         <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+      </ul>
+      {%- unless template == 'index' -%}
+      <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+      {%- endunless -%}
+      <script>
+         window.shopUrl = '{{ request.origin }}';
+         window.routes = {
+           cart_add_url: '{{ routes.cart_add_url }}',
+           cart_change_url: '{{ routes.cart_change_url }}',
+           cart_update_url: '{{ routes.cart_update_url }}',
+           cart_url: '{{ routes.cart_url }}',
+           predictive_search_url: '{{ routes.predictive_search_url }}',
+         };
+         window.cartStrings = {
+           error: `{{ 'sections.cart.cart_error' | t }}`,
+           quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`,
+         };
+         window.variantStrings = {
+           addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+           soldOut: `{{ 'products.product.sold_out' | t }}`,
+           unavailable: `{{ 'products.product.unavailable' | t }}`,
+           unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
+         };
+         window.quickOrderListStrings = {
+           itemsAdded: `{{ 'sections.quick_order_list.items_added.other' | t: quantity: '[quantity]' }}`,
+           itemAdded: `{{ 'sections.quick_order_list.items_added.one' | t: quantity: '[quantity]' }}`,
+           itemsRemoved: `{{ 'sections.quick_order_list.items_removed.other' | t: quantity: '[quantity]' }}`,
+           itemRemoved: `{{ 'sections.quick_order_list.items_removed.one' | t: quantity: '[quantity]' }}`,
+           viewCart: `{{- 'sections.quick_order_list.view_cart' | t -}}`,
+           each: `{{- 'sections.quick_order_list.each' | t: money: '[money]' }}`,
+           min_error: `{{- 'sections.quick_order_list.min_error' | t: min: '[min]' }}`,
+           max_error: `{{- 'sections.quick_order_list.max_error' | t: max: '[max]' }}`,
+           step_error: `{{- 'sections.quick_order_list.step_error' | t: step: '[step]' }}`,
+         };
+         window.accessibilityStrings = {
+           imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
+           shareSuccess: `{{ 'general.share.success_message' | t }}`,
+           pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
+           playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
+           recipientFormExpanded: `{{ 'recipient.form.expanded' | t }}`,
+           recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
+           countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
+         };
+      </script>
+      <script src="{{ 'add-to-cart-action-buttons.js' | asset_url }}" defer="defer"></script>
+      {%- if settings.predictive_search_enabled -%}
+      <!--<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>-->
+      {%- endif -%}
+      {%- if settings.cart_type == 'drawer' -%}
+      <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+      {%- endif -%}
+      <script src="{{ 'general-script.js' | asset_url }}" defer="defer"></script>
+      {%- render 'kwikpass' -%}
+      <script src="{{ 'temp-script.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'common-scripts.js' | asset_url }}" defer="defer"></script>
+      {%- if collection.handle == 'reels' -%}
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+           function tryClickFirstWhatmoreCard(retries = 10) {
+             const stacks = document.querySelectorAll('.whatmore-carousel-events-feed > .chakra-stack > .chakra-stack');
+             if (stacks.length > 0) {
+               const firstStack = stacks[0];
+               const clickable = firstStack.querySelector('.whatmore-event-tile-scale-out-animation');
+               if (clickable) {
+                 clickable.click(); 
+                 console.log('Clicked the first whatmore tile.');
+                 return;
+               }
+             }
+             if (retries > 0) {
+               setTimeout(() => tryClickFirstWhatmoreCard(retries - 1), 200);
+             } else {
+               console.warn('Failed to find Whatmore card to click.');
+             }
+           }
+           tryClickFirstWhatmoreCard();
+         });
+      </script>
+      <script>
+         document.addEventListener("DOMContentLoaded", function () {
+          function attachScopedCloseRedirect(retries = 15) {
+            const containers = document.querySelectorAll('.chakra-stack div[class*="whatmore-css-sv-"]');
+            let attached = false;
+            containers.forEach(container => {
+              const closeIcon = container.querySelector('[data-testid="CloseRoundedIcon"]');
+              if (closeIcon) {
+                const clickable = closeIcon.closest('button, div');
+                if (clickable && !clickable.dataset.redirectAttached) {
+                  clickable.dataset.redirectAttached = "true";
+                  clickable.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const prevURL = localStorage.getItem('previous_collection_url');
+                    if (prevURL) {
+                      localStorage.removeItem('previous_collection_url'); 
+                      window.location.href = prevURL;
+                    } else {
+                      window.location.href = "/";
+                    }
+                  });
+                  attached = true;
+                }
+              }
+            });
+            if (!attached && retries > 0) {
+              setTimeout(() => attachScopedCloseRedirect(retries - 1), 1000);
+            } else if (!attached) {
+              console.warn("⚠️ No Whatmore close buttons found to bind.");
+            }
+          }
+          attachScopedCloseRedirect();
+         });
+      </script>
+      {%- endif -%}
+      <!-- Begin Shopify–payment-cart JavaScript -->
+      <script type="text/javascript"> var mid = '6233';</script>
+      <script src="https://checkout-merchant.snapmint.com/js/v1/6233" defer></script>
+      <!-- End Shopify-payment JavaScript -->
+      {% render 'wizzy.search.filters.styles' %}
+      {% render 'wizzy.search.filters.scripts' %}
+      {% if template.name == 'product' %}
+      <style>
+         #judgeme_product_reviews .jdgm-rev-widg__paginate-spinner-wrapper.jdgm-slide-toggle, #judgeme_product_reviews .jdgm-rev-widg__body.jdgm-slide-toggle, #judgeme_product_reviews .jdgm-row-actions.jdgm-slide-toggle {display: none !important;}
+         #judgeme_product_reviews .jdgm-rev-widg__summary, #judgeme_product_reviews .jdgm-histogram, #judgeme_product_reviews .jdgm-histogram__row, #judgeme_product_reviews .jdgm-widget-actions-wrapper, #judgeme_product_reviews .jdgm-rev-widg__title, #judgeme_product_reviews .jdgm-rev-widg__header {cursor: default !important;}
+         #judgeme_product_reviews .jdgm-histogram__row {pointer-events: none;}
+         #judgeme_product_reviews .jdgm-widget-actions-wrapper .jdgm-write-rev-link {cursor: pointer;}
+      </style>
+      {% endif %}
+      {% if template contains 'product' %}
+      <script>
+         (function() {
+           function applyHideLogic() {
+             const container = document.querySelector('.whatmore-widget-container');
+             if (!container) return;
+             const tiles = container.querySelectorAll('.whatmore-event-tile-horizontal-swipe-animation-next');
+             const root = container.closest('.whatmore-base') || container.closest('[class*="whatmore"]') || container;
+             if (tiles.length < 2) {
+               root.style.setProperty('display', 'none', 'important');
+             } else {
+               root.style.removeProperty('display');
+             }
+           }
+           function init() {
+             const observer = new MutationObserver(() => {
+               const container = document.querySelector('.whatmore-widget-container');
+               if (container) {
+                 applyHideLogic();
+                 const innerObserver = new MutationObserver(applyHideLogic);
+                 innerObserver.observe(container, {
+                   childList: true,
+                   subtree: true,
+                   attributes: true
+                 });
+                 observer.disconnect(); 
+               }
+             });
+             observer.observe(document.body, { childList: true, subtree: true });
+             applyHideLogic();
+           }
+         
+           if (document.readyState === 'loading') {
+             document.addEventListener('DOMContentLoaded', init);
+           } else {
+             init();
+           }
+         })();
+      </script>
+      {% endif %}
+   </body>
+</html>

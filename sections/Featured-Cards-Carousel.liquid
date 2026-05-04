@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="{{ 'featured-cards-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'featured-cards-carousel.css' | asset_url }}"></noscript>
+
+<link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}"></noscript>
+
+{%- comment -%} Show first slide immediately before Swiper JS loads {%- endcomment -%}
+<style>
+    .featured-carousel-wrapper { opacity: 0; transition: opacity 0.3s ease; }
+  .featured-carousel-wrapper.carousel-ready { opacity: 1; }
+</style>
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+<script src="{{ 'featured-cards-carousel.js' | asset_url }}" defer></script>
+
+
+{%- style -%}
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      order: {{ section.settings.order_no }};
+    }
+  }
+  .featured-card-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* adjust to match your actual banner ratio */
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  .featured-card-inner img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+{%- endstyle -%}
+
+<div class="featured-carousel-wrapper {{ section.settings.custom_class }}">
+  <div class="swiper featured-carousel">
+    <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+
+        {%- assign desktop_image = block.settings.image -%}
+        {%- if block.settings.mobile_image != blank -%}
+          {%- assign mobile_image = block.settings.mobile_image -%}
+        {%- else -%}
+          {%- assign mobile_image = desktop_image -%}
+        {%- endif -%}
+
+        {%- assign desktop_alt = desktop_image.alt | default: shop.name | escape -%}
+        {%- assign mobile_alt = mobile_image.alt | default: shop.name | escape -%}
+
+        <div class="swiper-slide featured-card{% if block.settings.mobile_image == blank %} no-mobile-image{% endif %}" data-real-index="{{ forloop.index0 }}">
+          <div class="featured-card-inner">
+            <a href="{{ block.settings.link }}">
+
+              {%- comment -%} Desktop image {%- endcomment -%}
+              {%- if desktop_image != blank -%}
+                {%- if forloop.first -%}
+                  <img
+                    src="{{ desktop_image | image_url: width: 1200 }}"
+                    srcset="{{ desktop_image | image_url: width: 750 }} 750w, {{ desktop_image | image_url: width: 1200 }} 1200w"
+                    sizes="(min-width: 750px) 100vw, 0px"
+                    class="featured-img featured-img-desktop"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="{{ desktop_image.width }}"
+                    height="{{ desktop_image.height }}"
+                    alt="{{ desktop_alt }}"
+                  >
+                {%- else -%}
+                  {{ desktop_image | image_url: width: 1200 | image_tag:
+                    widths: '550, 750, 1100, 1200',
+                    sizes: '(min-width: 750px) 100vw, 0px',
+                    class: 'featured-img featured-img-desktop',
+                    loading: 'lazy',
+                    decoding: 'async',
+                    width: desktop_image.width,
+                    height: desktop_image.height,
+                    alt: desktop_alt
+                  }}
+                {%- endif -%}
+              {%- endif -%}
+
+              {%- comment -%} Mobile image {%- endcomment -%}
+              {%- if mobile_image != blank -%}
+                {%- if forloop.first -%}
+                  <img
+                    src="{{ mobile_image | image_url: width: 550 }}"
+                    srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 550 }} 550w"
+                    sizes="100vw"
+                    class="featured-img featured-img-mobile"
+                    alt="{{ mobile_alt }}"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="{{ mobile_image.width }}"
+                    height="{{ mobile_image.height }}"
+                  >
+                {%- else -%}
+                  {{ mobile_image | image_url: width: 550 | image_tag:
+                    widths: '375, 550',
+                    sizes: '100vw',
+                    class: 'featured-img featured-img-mobile',
+                    loading: 'lazy',
+                    decoding: 'async',
+                    width: mobile_image.width,
+                    height: mobile_image.height,
+                    alt: mobile_alt
+                  }}
+                {%- endif -%}
+              {%- endif -%}
+
+            </a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    <span class="swiper-button-prev"></span>
+    <span class="swiper-button-next"></span>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Cards Carousel",
+  "tag": "section",
+  "class": "featured-cards-carousel",
+  "settings": [
+    { "type": "text", "id": "custom_class", "label": "Custom class" },
+    { "type": "text", "id": "order_no", "label": "Add Order number" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "image_picker", "id": "mobile_image", "label": "Mobile Image (optional)" },
+        { "type": "url", "id": "link", "label": "Button Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Featured Cards Carousel" }]
+}
+{% endschema %}

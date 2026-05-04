@@ -1,0 +1,185 @@
+
+<!-- pdp Viewed Products Section -->
+<div class="pdp-viewed-wrapper">
+  <div class="pdp-viewed-header js-pdp-viewed-header">
+    <h2 class="pdp-viewed-title">Recently Viewed Products</h2>
+    <button class="clear-all-btn" onclick="clearAllProducts()">Clear All</button>
+  </div>
+
+  <div class="swiper-container pdp-viewed-section js-pdp-viewed">
+    <div class="swiper-wrapper"></div>
+    <div class="swiper-pagination swiper-pagination-rec"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <div class="no-products-message js-no-products" style="display: none;">
+    <!-- <p class="bfr-txt-rc">
+      <span>Looks like you haven’t checked out any of our products pdp.</span><br>
+      <span>We have a vast collection of quality products.</span><br>
+      <span class="bfr-txt-span">So why wait? Check out our products.</span>
+    </p>
+    <div class="recent-viw"><a href="/collections/all" class="view-products-btn">View Products</a></div> -->
+  </div>
+</div>
+
+ <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let mySwiper;
+
+  function renderpdpViewedProducts() {
+    let pdpViewed = JSON.parse(localStorage.getItem("pdp_viewed")) || [];
+    pdpViewed = pdpViewed.filter(product => product.id && product.variantId);
+
+    const container = document.querySelector(".pdp-viewed-section .swiper-wrapper");
+    const noProductsMessage = document.querySelector(".js-no-products");
+    const header = document.querySelector(".js-pdp-viewed-header");
+    const swiperContainer = document.querySelector(".pdp-viewed-section");
+    const swiperButtons = swiperContainer.querySelectorAll('.swiper-button-next, .swiper-button-prev');
+
+    if (pdpViewed.length === 0) {
+      container.innerHTML = '';
+      header.style.display = 'none';
+      noProductsMessage.style.display = 'block';
+      swiperButtons.forEach(button => button.style.display = 'none');
+    } else {
+      header.style.display = 'flex';
+      noProductsMessage.style.display = 'none';
+      const reversedProducts = pdpViewed.slice().reverse();
+      const productsHtml = reversedProducts.map((product, index) => {
+        const buttonText = product.inventory > 0 ? 'Add to cart' : 'Sold Out';
+        const buttonClass = product.inventory > 0 ? 'cstm-atc btn' : 'sold-out-btn';
+
+        return `
+          <div class="swiper-slide pdp-viewed-item" data-index="${index}">
+            <button class="close-btn-rcc" data-index="${pdpViewed.length - 1 - index}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M18.3 5.7a1 1 0 00-1.4 0L12 10.6 7.1 5.7a1 1 0 00-1.4 1.4L10.6 12l-4.9 4.9a1 1 0 101.4 1.4l4.9-4.9 4.9 4.9a1 1 0 001.4-1.4L13.4 12l4.9-4.9a1 1 0 000-1.4z"/>
+              </svg>
+            </button>
+            <div class="nw-recent">
+            <a class="recent-img-a" href="${product.url}">
+              <img src="${product.image}" alt="${product.title}" loading="lazy">
+            </a>
+            <div class="pdp-views-des">
+              <p class="pdp-view-prc-com"><span class="pdp-viewed-price">${product.price}</span>
+               <span class="pdp-viewed-compare-at-price" style="text-decoration: line-through;">${product.compareAtPrice}</span>
+               </p>
+
+             
+              <h3 class="pdp-viewed-product-title">${product.title}</h3>
+              <div class="cstm-atcbtn">
+                <button class="${buttonClass}" data-product-id="${product.id}" data-variant-id="${product.variantId}">
+                  ${buttonText}
+                </button>
+              </div>
+            </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      container.innerHTML = productsHtml;
+      swiperButtons.forEach(button => button.style.display = 'flex');
+
+      // Swiper Init
+      if (mySwiper) mySwiper.destroy();
+      mySwiper = new Swiper('.pdp-viewed-section', {
+        pagination: { el: '.swiper-pagination-rec', dynamicBullets: true, clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        slidesPerView: 5.6,
+        spaceBetween: 20,
+        breakpoints: { 340: { slidesPerView: 1.8 }, 420: { slidesPerView: 2 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 5.5 } },
+      });
+
+      // Add to Cart Button Click Event
+      document.querySelectorAll(".cstm-atc.btn").forEach(button => {
+        button.addEventListener("click", async function () {
+          const variantId = this.getAttribute("data-variant-id");
+          await addToCart(variantId);
+        });
+      });
+
+      // Disable Sold Out Button
+      document.querySelectorAll(".sold-out-btn").forEach(button => {
+        button.disabled = true;
+        button.style.cursor = 'not-allowed';
+      });
+
+      // Remove Product from pdp Viewed
+      document.querySelectorAll(".close-btn-rcc").forEach(button => {
+        button.addEventListener("click", function () {
+          const index = this.getAttribute("data-index");
+          removeProduct(index);
+        });
+      });
+    }
+  }
+
+async function addToCart(variantId) {
+    try {
+        const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: variantId, quantity: 1 })
+        });
+
+        if (!response.ok) throw new Error('Error adding to cart');
+
+        console.log("Product added to cart!");
+
+        // Open the Cart Drawer by Adding Active Class
+        const cartDrawer = document.querySelector('cart-drawer');
+        if (cartDrawer) {
+            cartDrawer.classList.add('active'); // Open the drawer
+        }
+
+        // Now update the cart drawer with the latest data
+        await updateCartDrawer();
+
+    } catch (error) {
+        console.error("Add to cart failed:", error);
+    }
+}
+
+// Function to Update the Cart Drawer Content
+async function updateCartDrawer() {
+    try {
+        const response = await fetch('/?section_id=cart-drawer'); 
+        if (!response.ok) throw new Error('Error fetching cart drawer');
+
+        const text = await response.text();
+        const html = new DOMParser().parseFromString(text, 'text/html');
+        const newCartContent = html.querySelector('cart-drawer');
+
+        if (newCartContent) {
+            document.querySelector('cart-drawer').innerHTML = newCartContent.innerHTML;
+            console.log("Cart drawer updated!");
+        }
+
+    } catch (error) {
+        console.error("Cart drawer update failed:", error);
+    }
+}
+
+  window.removeProduct = function (index) {
+    let pdpViewed = JSON.parse(localStorage.getItem("pdp_viewed")) || [];
+    pdpViewed.splice(index, 1);
+    localStorage.setItem("pdp_viewed", JSON.stringify(pdpViewed));
+    renderpdpViewedProducts();
+  };
+
+  // Clear all pdp viewed products
+  window.clearAllProducts = function () {
+    localStorage.removeItem("pdp_viewed");
+    document.querySelector(".swiper-wrapper").innerHTML = '';
+    document.querySelector(".js-pdp-viewed-header").style.display = "none";
+    document.querySelector(".js-no-products").style.display = 'block';
+  };
+
+  renderpdpViewedProducts();
+});
+
+
+</script>

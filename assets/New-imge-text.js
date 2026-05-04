@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){let e=document.querySelector(".anim_btn");function n(){e&&(e.classList.add("shake_msg"),setTimeout(()=>{e.classList.remove("shake_msg")},500))}e&&function e(){n(),setTimeout(n,500),setTimeout(()=>{e()},3500)}()});

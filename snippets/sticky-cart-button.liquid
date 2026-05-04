@@ -1,0 +1,15 @@
+{{ 'sticky-cart-button.css' | asset_url | stylesheet_tag }}
+<div class="CartButton__Container medium-hide large-up-hide">
+  <a href="/cart">
+      <div class="CartButton__CartImageContainer">
+         <div class="CartButton__CartIcon"> <img class="CartIcon" src="//deodap.in/cdn/shop/files/Frame_3.svg?v=1716358435"></div>
+         <div class="CartButton__CartItemDetails">
+            <div class="CartButton__CartItemCount"><span class="sticky-cart-count">{{ cart.item_count }}</span> items</div>
+            <div class="CartButton__PriceContainer">
+               <div class="CartButton__ItemTotal">Rs.<span class="sticky-cart-price">{{ cart.total_price | money_without_currency }}</span></div>
+            </div>
+         </div>
+      </div>
+   <div class="CartButton__CartTextContainer"> <div class="CartButton__ViewCart">View Cart</div><div class="CartButton__RightArrow"><span class="svg-wrapper">{{'icon-chevron-right.svg' | inline_asset_content }}</span></div></div>
+    </a>
+</div>

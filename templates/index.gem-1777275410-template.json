@@ -1,0 +1,1372 @@
+{
+  "sections": {
+    "featured_cards_carousel_HidaJC": {
+      "type": "Featured-Cards-Carousel",
+      "blocks": {
+        "card_YG7f4n": {
+          "type": "card",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Travel_Essentials_1.png",
+            "mobile_image": "shopify:\/\/shop_images\/Travel_Essentials-m_1.png",
+            "link": "shopify:\/\/collections\/travel-accessories"
+          }
+        },
+        "card_QVhECm": {
+          "type": "card",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2026-04-24_at_5.54.21_PM_1_1.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/WhatsApp_Image_2026-04-24_at_5.54.21_PM_2.jpg",
+            "link": "shopify:\/\/collections\/mother-gifts"
+          }
+        },
+        "card_jfmkTe": {
+          "type": "card",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Stationery_4_1.png",
+            "mobile_image": "shopify:\/\/shop_images\/Stationery_-m_1.png",
+            "link": "shopify:\/\/collections\/stationery"
+          }
+        },
+        "card_jQYbT7": {
+          "type": "card",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/22-4-26_summer_1.png",
+            "mobile_image": "shopify:\/\/shop_images\/summer-m_5_1.png",
+            "link": "shopify:\/\/collections\/summer-essential-products"
+          }
+        }
+      },
+      "block_order": [
+        "card_YG7f4n",
+        "card_QVhECm",
+        "card_jfmkTe",
+        "card_jQYbT7"
+      ],
+      "name": "Featured Cards Carousel",
+      "settings": {
+        "custom_class": "main-slideshow-banner",
+        "order_no": "4"
+      }
+    },
+    "collection_list_mobile_zqzFJ6": {
+      "type": "collection-list-mobile",
+      "blocks": {
+        "featured_collection_VdgafB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "new-arrival",
+            "custom_image": "shopify:\/\/shop_images\/New_Arrivals_565af284-c629-418d-bb10-6ad5740f713f.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/New_Arrivals_565af284-c629-418d-bb10-6ad5740f713f.png",
+            "custom_title": "New Arrivals",
+            "collection_url": "shopify:\/\/collections\/new-arrival",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_WjBHqG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "summer-essential-products",
+            "custom_image": "shopify:\/\/shop_images\/summer_collection.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/summer_collection.png",
+            "custom_title": "Summer",
+            "collection_url": "shopify:\/\/collections\/summer-essential-products",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_FdaTcn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "best-selling-products",
+            "custom_image": "shopify:\/\/shop_images\/Best_selling_9a9e8163-c96b-4122-9c16-3c68e8054a7f.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Best_selling_9a9e8163-c96b-4122-9c16-3c68e8054a7f.png",
+            "custom_title": "Best selling",
+            "collection_url": "shopify:\/\/collections\/best-selling-products",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_QrqJ7i": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "all-kitchen-accessories",
+            "custom_image": "shopify:\/\/shop_images\/Kitchen_7be853e6-8bcc-424c-bdb4-5a5dea8e84cd.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Kitchen_7be853e6-8bcc-424c-bdb4-5a5dea8e84cd.png",
+            "custom_title": "Kitchen",
+            "collection_url": "shopify:\/\/collections\/kitchen",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_yDBFHg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/All_Brands_1ff30d61-548b-4f96-b352-0c825d63814c.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/All_Brands_1ff30d61-548b-4f96-b352-0c825d63814c.png",
+            "custom_title": "All Brands",
+            "collection_url": "shopify:\/\/collections\/all-brand",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_jyjLKP": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "office-products-1",
+            "custom_image": "shopify:\/\/shop_images\/Gardening_55443a09-300c-4205-8612-8f9376c7ee02.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Gardening_55443a09-300c-4205-8612-8f9376c7ee02.png",
+            "custom_title": "Gardening",
+            "collection_url": "shopify:\/\/collections\/gardening",
+            "hide_this_slide_mobile": true
+          }
+        },
+        "featured_collection_WBzdUJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "jewellery-1",
+            "custom_image": "shopify:\/\/shop_images\/Jewellery_f3515011-be1a-463c-b644-8ad2af44980f.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Jewellery_f3515011-be1a-463c-b644-8ad2af44980f.png",
+            "custom_title": "Jewellery",
+            "collection_url": "shopify:\/\/collections\/jewellery-1",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_yhhD33": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Gifts_6a5cbcc6-8454-462c-ad56-10f5181800c8.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Gifts_6a5cbcc6-8454-462c-ad56-10f5181800c8.png",
+            "custom_title": "Gifts",
+            "collection_url": "shopify:\/\/collections\/gift",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_xQwcH9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cleaning-supplies",
+            "custom_image": "shopify:\/\/shop_images\/Shop_by_Industry.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Shop_by_Industry.png",
+            "custom_title": "Shop by Industry",
+            "collection_url": "https:\/\/deodap.in\/collections\/shop-by-industry",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_Crw9ap": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "personal-care-appliances",
+            "custom_image": "shopify:\/\/shop_images\/Home_Essentials_9afa96a6-60af-4f7a-a249-eaa7ae7b4c4e.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Home_Essentials_9afa96a6-60af-4f7a-a249-eaa7ae7b4c4e.png",
+            "custom_title": "Home Essentials",
+            "collection_url": "shopify:\/\/collections\/home-essentials",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_tb9Arz": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-essentials",
+            "custom_image": "shopify:\/\/shop_images\/Kids_Baby_fd98c8aa-8457-442a-9860-671cecb25540.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Kids_Baby_fd98c8aa-8457-442a-9860-671cecb25540.png",
+            "custom_title": "Kids & Baby",
+            "collection_url": "shopify:\/\/collections\/kids-baby-essentials",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_T4r4nm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mobile-cover",
+            "custom_image": "shopify:\/\/shop_images\/Health_Beauty_bf22e67a-4def-4230-9a42-dc982900f384.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Health_Beauty_bf22e67a-4def-4230-9a42-dc982900f384.png",
+            "custom_title": "Health & Beauty",
+            "collection_url": "shopify:\/\/collections\/health-beauty",
+            "hide_this_slide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_VdgafB",
+        "featured_collection_WjBHqG",
+        "featured_collection_FdaTcn",
+        "featured_collection_QrqJ7i",
+        "featured_collection_yDBFHg",
+        "featured_collection_jyjLKP",
+        "featured_collection_WBzdUJ",
+        "featured_collection_yhhD33",
+        "featured_collection_xQwcH9",
+        "featured_collection_Crw9ap",
+        "featured_collection_tb9Arz",
+        "featured_collection_T4r4nm"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 768px) {{display: none; }}",
+        "@media screen and (min-width: 990px) {.title, .title-wrapper-with-link {margin: 0rem 0 5rem; }}"
+      ],
+      "settings": {
+        "class": "Homepage-categories_new_design",
+        "tracking-class": "top-categories-desk",
+        "order_no": "3",
+        "title": "Top Categories",
+        "image_heading": "shopify:\/\/shop_images\/Top_Categories_bba8dad0-daa7-4f4f-815e-3dc1c309bf6d.webp",
+        "image_fetchpriority": true,
+        "image_heading_link": "shopify:\/\/collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "4",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    },
+    "1745385836897195a2": {
+      "type": "apps",
+      "blocks": {
+        "whatmore_shoppable_videos_app_block_collections_YtTTgn": {
+          "type": "shopify:\/\/apps\/whatmore-shoppable-videos\/blocks\/app-block-collections\/20db8a72-315a-4364-8885-64219ee48303",
+          "settings": {
+            "collectionHeading": "Top Pick By Influencers",
+            "template-type": "template-collections-f",
+            "tile-size": 80,
+            "tile-size-portrait": 75,
+            "min-height": 250,
+            "collectionId": "0"
+          }
+        }
+      },
+      "block_order": [
+        "whatmore_shoppable_videos_app_block_collections_YtTTgn"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.navigation-button-next-container, .navigation-button-prev-container {width: 40px !important; border-radius: 6px !important; height: 40px !important; background-color: rgba(0, 0, 0, 0.3) !important; } .whatmore-arrow-right-portrait, .whatmore-arrow-left-portrait {position: relative !important; bottom: -30px !important; right: 0px !important; } {display: none; }}"
+      ],
+      "settings": {
+        "order_no": "6",
+        "include_margins": true
+      }
+    },
+    "collection_list_mobile_q4Eenr": {
+      "type": "collection-list-mobile",
+      "blocks": {
+        "featured_collection_VdgafB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "new-arrival",
+            "custom_image": "shopify:\/\/shop_images\/New_Arrivals_565af284-c629-418d-bb10-6ad5740f713f.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/New_Arrivals_565af284-c629-418d-bb10-6ad5740f713f.png",
+            "custom_title": "Just Arrivals",
+            "collection_url": "shopify:\/\/collections\/just-arrived",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_yhhD33": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "summer-essential-products",
+            "custom_image": "shopify:\/\/shop_images\/summer_collection.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/summer_collection.png",
+            "custom_title": "Summer",
+            "collection_url": "shopify:\/\/collections\/summer-essential-products",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_FdaTcn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "best-selling-products",
+            "custom_image": "shopify:\/\/shop_images\/Best_selling_9a9e8163-c96b-4122-9c16-3c68e8054a7f.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Best_selling_9a9e8163-c96b-4122-9c16-3c68e8054a7f.png",
+            "custom_title": "Best selling",
+            "collection_url": "shopify:\/\/collections\/best-selling-products",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_QrqJ7i": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "all-kitchen-accessories",
+            "custom_image": "shopify:\/\/shop_images\/Kitchen_7be853e6-8bcc-424c-bdb4-5a5dea8e84cd.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Kitchen_7be853e6-8bcc-424c-bdb4-5a5dea8e84cd.png",
+            "custom_title": "Kitchen",
+            "collection_url": "shopify:\/\/collections\/kitchen",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_yDBFHg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "all-brand",
+            "custom_image": "shopify:\/\/shop_images\/All_Brands_1ff30d61-548b-4f96-b352-0c825d63814c.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/All_Brands_1ff30d61-548b-4f96-b352-0c825d63814c.png",
+            "custom_title": "All Brand",
+            "collection_url": "shopify:\/\/collections\/all-brand",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_DE7TDR": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gardening",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Gardening_55443a09-300c-4205-8612-8f9376c7ee02.png",
+            "custom_title": "Gardening",
+            "collection_url": "shopify:\/\/collections\/gardening",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_bkqTfH": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "jewellery-1",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Jewellery_f3515011-be1a-463c-b644-8ad2af44980f.png",
+            "custom_title": "Jewellery",
+            "collection_url": "shopify:\/\/collections\/jewellery-1",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_xQwcH9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cleaning-supplies",
+            "custom_image": "shopify:\/\/shop_images\/Cleaning_Supplies_W_e5bf1666-0811-4c5d-90c3-48f714abf103.webp",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Cleaning_Supplies_M_b3b3aa5f-0b98-4413-8851-15e2b1a55200.webp",
+            "custom_title": "Cleaning Supplies",
+            "collection_url": "shopify:\/\/collections\/cleaning-supplies",
+            "hide_this_slide_mobile": true
+          }
+        },
+        "featured_collection_Crw9ap": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gift",
+            "custom_image": "shopify:\/\/shop_images\/Gifts_6a5cbcc6-8454-462c-ad56-10f5181800c8.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Gifts_6a5cbcc6-8454-462c-ad56-10f5181800c8.png",
+            "custom_title": "Gift",
+            "collection_url": "shopify:\/\/collections\/gift",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_WBzdUJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "electronics-t",
+            "custom_image": "shopify:\/\/shop_images\/Shop_by_Industry.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Shop_by_Industry.png",
+            "custom_title": "Shop by Industry",
+            "collection_url": "https:\/\/deodap.in\/collections\/shop-by-industry",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_tb9Arz": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-essentials",
+            "custom_image": "shopify:\/\/shop_images\/Home_Essentials_9afa96a6-60af-4f7a-a249-eaa7ae7b4c4e.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Home_Essentials_9afa96a6-60af-4f7a-a249-eaa7ae7b4c4e.png",
+            "custom_title": "Home Essentials",
+            "collection_url": "shopify:\/\/collections\/home-essentials",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_T4r4nm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mobile-cover",
+            "custom_image": "shopify:\/\/shop_images\/Mobile_cover_b889f778-a635-42cc-8e82-6a09eb69d430.webp",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Mobile_cover_b889f778-a635-42cc-8e82-6a09eb69d430.webp",
+            "custom_title": "Mobile Cover",
+            "collection_url": "https:\/\/deodap.in\/pages\/mobile-cover",
+            "hide_this_slide_mobile": true
+          }
+        },
+        "featured_collection_jyjLKP": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "office-products-1",
+            "custom_image": "shopify:\/\/shop_images\/Stationery_w_90434e3e-c7f5-49cd-b8a9-6c946c7cd446.webp",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Stationery-m_55ea28d2-e0b1-41ab-84dc-3d57c061c250.webp",
+            "custom_title": "Stationery",
+            "collection_url": "shopify:\/\/collections\/office-products-1",
+            "hide_this_slide_mobile": true
+          }
+        },
+        "featured_collection_WjBHqG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "rakhi",
+            "custom_image": "shopify:\/\/shop_images\/Rakkhi_D.webp",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Personalized_Gifts_M_6f736825-94fb-43c0-9ad4-176262bdb8fa.webp",
+            "custom_title": "Rakhi",
+            "collection_url": "shopify:\/\/collections\/rakhi",
+            "hide_this_slide_mobile": true
+          }
+        },
+        "featured_collection_KRQc97": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kids-baby-essentials",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Kids_Baby_fd98c8aa-8457-442a-9860-671cecb25540.png",
+            "custom_title": "Kids & Baby",
+            "collection_url": "shopify:\/\/collections\/kids-baby-essentials",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_MfAygF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beauty-health-grocery",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Health_Beauty_bf22e67a-4def-4230-9a42-dc982900f384.png",
+            "custom_title": "Health & Beauty",
+            "collection_url": "shopify:\/\/collections\/beauty-health-grocery",
+            "hide_this_slide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_VdgafB",
+        "featured_collection_yhhD33",
+        "featured_collection_FdaTcn",
+        "featured_collection_QrqJ7i",
+        "featured_collection_yDBFHg",
+        "featured_collection_DE7TDR",
+        "featured_collection_bkqTfH",
+        "featured_collection_xQwcH9",
+        "featured_collection_Crw9ap",
+        "featured_collection_WBzdUJ",
+        "featured_collection_tb9Arz",
+        "featured_collection_T4r4nm",
+        "featured_collection_jyjLKP",
+        "featured_collection_WjBHqG",
+        "featured_collection_KRQc97",
+        "featured_collection_MfAygF"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 767px) {{display: none; }}"
+      ],
+      "settings": {
+        "class": "Homepage-categories_new_design",
+        "tracking-class": "top-categories-mob",
+        "order_no": "1",
+        "title": "Top Categories",
+        "image_heading": "shopify:\/\/shop_images\/top_categories_de29dbc3-0cad-4356-a315-18702c7bab7c.png",
+        "image_fetchpriority": true,
+        "image_heading_link": "shopify:\/\/collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "4",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "promotional_grid_slider_Nqr4JP": {
+      "type": "promotional-grid-slider",
+      "blocks": {
+        "column_Efdihr": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-9",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981805.png"
+          }
+        },
+        "column_FF9nzW": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-29",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981807.png"
+          }
+        },
+        "column_yGkdPK": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-49",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981808.png"
+          }
+        },
+        "column_PWhGzq": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-149",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981810.png"
+          }
+        },
+        "column_e6MP7r": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-249",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981811.png"
+          }
+        },
+        "column_4yFGh8": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-9",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981686_88f2dea1-ad97-414e-9311-9e564436e1a3.png"
+          }
+        },
+        "column_BfUGiX": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-29",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981688_ce4c1791-4a87-4c77-84fc-08016d13fd22.png"
+          }
+        },
+        "column_XthWRz": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-49",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981689_a57c12d7-5823-4498-ab67-e472d997df64.png"
+          }
+        },
+        "column_Trx97F": {
+          "type": "column",
+          "settings": {
+            "collection-url": "https:\/\/deodap.in\/collections\/under-149",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981691_b69ad956-ed14-4dd9-b953-1a51fe6c2547.png"
+          }
+        },
+        "column_KbCU4M": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-249",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981692_c363b0e2-39c6-4f3c-b0f3-97d5a04c6d41.png"
+          }
+        },
+        "column_6HadQY": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-349",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981693_be4c4a3a-cb03-4573-9950-7d3fcdc77370.png"
+          }
+        },
+        "column_f3JQeB": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-449",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981694_483e44f5-d842-41ed-be13-dba1a42a85bf.png"
+          }
+        },
+        "column_AFHH6m": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-999",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981696_4c0b495a-2173-4edc-9a39-2eef276185b6.png"
+          }
+        },
+        "column_GGphX6": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/above-1000",
+            "show_on_mobile": false,
+            "image-mob": "shopify:\/\/shop_images\/Group_14981697_643caa54-f5a2-48c0-956d-5c5d3b6047e5.png"
+          }
+        }
+      },
+      "block_order": [
+        "column_Efdihr",
+        "column_FF9nzW",
+        "column_yGkdPK",
+        "column_PWhGzq",
+        "column_e6MP7r",
+        "column_4yFGh8",
+        "column_BfUGiX",
+        "column_XthWRz",
+        "column_Trx97F",
+        "column_KbCU4M",
+        "column_6HadQY",
+        "column_f3JQeB",
+        "column_AFHH6m",
+        "column_GGphX6"
+      ],
+      "custom_css": [
+        ".mob-multi-media-img-slider {height: 100%;}",
+        ".promo-grid-mobile-slider .multicolumn-card__image-wrapper {border-radius: 6px !important;}",
+        ".promo-grid-mobile-slider,.multicolumn-card {background: transparent;}",
+        "img {width: 100%; margin-block: 0rem;}"
+      ],
+      "settings": {
+        "order_no": "2",
+        "custom-class": "Multicolumn-section-two",
+        "custom_id": "under9_products_grid",
+        "custom_idmb": "under9_products_grid_mb",
+        "title": "Explore Our Range",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 5,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "3",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 40,
+        "mobile_image": "shopify:\/\/shop_images\/Explore_Our_Range_1_fa8620d0-52df-4130-8520-c8aceb54a092.png",
+        "mob-header-link": "shopify:\/\/collections\/explore-our-price"
+      }
+    },
+    "promotional_grid_slider_RrKPG3": {
+      "type": "promotional-grid-slider",
+      "blocks": {
+        "column_qPebL6": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-349",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981812.png"
+          }
+        },
+        "column_NtbTE3": {
+          "type": "column",
+          "settings": {
+            "collection-url": "https:\/\/deodap.in\/collections\/under-449",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981813.png"
+          }
+        },
+        "column_K6QG6x": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-499",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981814.png"
+          }
+        },
+        "column_wFkggc": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/under-999",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981815.png"
+          }
+        },
+        "column_E7UJP6": {
+          "type": "column",
+          "settings": {
+            "collection-url": "shopify:\/\/collections\/above-1000",
+            "show_on_mobile": true,
+            "image": "shopify:\/\/shop_images\/Group_14981816_a018c298-2fca-4941-8e79-9c62e7068c98.png"
+          }
+        }
+      },
+      "block_order": [
+        "column_qPebL6",
+        "column_NtbTE3",
+        "column_K6QG6x",
+        "column_wFkggc",
+        "column_E7UJP6"
+      ],
+      "custom_css": [
+        ".mob-multi-media-img-slider {height: 100%; \/*aspect-ratio: 1;*\/}",
+        ".promo-grid-mobile-slider .multicolumn-card__image-wrapper {border-radius: 6px !important;}",
+        ".promo-grid-mobile-slider,.multicolumn-card {background: transparent;}",
+        "@media screen and (max-width: 768px) {{display: none; }}"
+      ],
+      "name": "promotional-grid-slider",
+      "settings": {
+        "order_no": "",
+        "custom-class": "Multicolumn-section-two",
+        "custom_id": "under9_products_grid",
+        "custom_idmb": "under9_products_grid_mb",
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 5,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "3",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "mob-header-link": ""
+      }
+    },
+    "app_wrapper_87DFzA": {
+      "type": "App-Wrapper",
+      "blocks": {
+        "whatmore_shoppable_videos_app_block_collections_3pRdCF": {
+          "type": "shopify:\/\/apps\/whatmore-shoppable-videos\/blocks\/app-block-collections\/20db8a72-315a-4364-8885-64219ee48303",
+          "settings": {
+            "collectionHeading": "Top Pick By Influencers",
+            "template-type": "template-collections-f",
+            "tile-size": 60,
+            "tile-size-portrait": 60,
+            "min-height": 250,
+            "collectionId": "0"
+          }
+        }
+      },
+      "block_order": [
+        "whatmore_shoppable_videos_app_block_collections_3pRdCF"
+      ],
+      "custom_css": [
+        "@media (min-width: 769px) {{display: none; }}",
+        ".whatmore-carousel-events div {justify-content: left !important; align-items: flex-start !important;}",
+        " {margin-top: 10px; margin-bottom: 10px;}"
+      ],
+      "name": "App-Wrapper",
+      "settings": {
+        "order_no": "3",
+        "include_padding": true
+      }
+    },
+    "collection_list_mobile_FHxGcD": {
+      "type": "collection-list-mobile",
+      "blocks": {
+        "featured_collection_DkgDN9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kitchen-tools",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981701_7b873fc4-60cb-4720-afd8-35e44e82012f.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981701_7b873fc4-60cb-4720-afd8-35e44e82012f.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/kitchen-tools",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_Hxwwx8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981704_d3df05ac-dceb-4bc0-a093-d10ba30b2f0c.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981704_d3df05ac-dceb-4bc0-a093-d10ba30b2f0c.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/kitchen-storage-basket-stands",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_aQNEcB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981702_31805f98-5460-44b3-ba7a-01ac8b65be06.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981702_31805f98-5460-44b3-ba7a-01ac8b65be06.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/kitchen-appliances",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_CGTp9w": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981703_ae67c853-96ca-4df9-9544-ba3ed181aa46.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981703_ae67c853-96ca-4df9-9544-ba3ed181aa46.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/kitchen-storage-water-bottle",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_4bAWMB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981700_f2379190-5e20-4e8f-8610-9de643afb27d.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981700_f2379190-5e20-4e8f-8610-9de643afb27d.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/choppers-slicers",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_TVALhK": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981818_b57e0465-ef51-45b0-b3f5-8e183aab84e9.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981818_b57e0465-ef51-45b0-b3f5-8e183aab84e9.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/kitchen-storage-lunch-box-tiffin",
+            "hide_this_slide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_DkgDN9",
+        "featured_collection_Hxwwx8",
+        "featured_collection_aQNEcB",
+        "featured_collection_CGTp9w",
+        "featured_collection_4bAWMB",
+        "featured_collection_TVALhK"
+      ],
+      "custom_css": [
+        ".grid__item {width: calc(30% - var(--grid-mobile-horizontal-spacing) * 3 \/ 4);}",
+        "img {width: 100%; margin-block: 0rem;}",
+        ".title-wrapper--self-padded-mobile {padding-left: 0rem; padding-right: 0rem;}",
+        ".custom-collection-list-heading {color: #000; padding: 0px 0;}"
+      ],
+      "name": "collection-1",
+      "settings": {
+        "class": "Homepage-categories_new_design",
+        "tracking-class": "top-categories-mob",
+        "order_no": "3",
+        "title": "Kitchen Accessories",
+        "image_heading": "shopify:\/\/shop_images\/Kitchen_88d8a582-5539-401e-9512-89946f4cde71.png",
+        "image_fetchpriority": false,
+        "image_heading_link": "shopify:\/\/collections\/kitchen",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "3",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_mobile_UD9LeM": {
+      "type": "collection-list-mobile",
+      "blocks": {
+        "featured_collection_yYGCiX": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981704_1.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981704_1.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/home-decor",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_NigyEA": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981702_1.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981702_1.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/cleaning-supplies",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_zBWdn8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981817_057bde43-5b8d-4829-83b7-1aa2506e2708.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981817_057bde43-5b8d-4829-83b7-1aa2506e2708.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/clock",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_z4PgxF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981703_1.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981703_1.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/home-storage",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_jmAKNq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981701_1.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981701_1.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/multi-purpose-hooks",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_FXixA4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/Group_14981700_1.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/Group_14981700_1.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/lights",
+            "hide_this_slide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_yYGCiX",
+        "featured_collection_NigyEA",
+        "featured_collection_zBWdn8",
+        "featured_collection_z4PgxF",
+        "featured_collection_jmAKNq",
+        "featured_collection_FXixA4"
+      ],
+      "custom_css": [
+        ".grid__item {width: calc(30% - var(--grid-mobile-horizontal-spacing) * 3 \/ 4);}",
+        "img {width: 100%; margin-block: 0rem;}",
+        ".title-wrapper--self-padded-mobile {padding-left: 0rem; padding-right: 0rem;}",
+        ".custom-collection-list-heading {color: #000; padding: 0px 0;}"
+      ],
+      "name": "collection-2",
+      "settings": {
+        "class": "Homepage-categories_new_design",
+        "tracking-class": "top-categories-mob",
+        "order_no": "6",
+        "title": "Home Essentials",
+        "image_heading": "shopify:\/\/shop_images\/Home_Essentials_48980ba1-7935-4aed-917e-c86d98154d21.png",
+        "image_fetchpriority": false,
+        "image_heading_link": "shopify:\/\/collections\/home-essentials",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "3",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_home_collection_MAbF6x": {
+      "type": "featured-home-collection",
+      "custom_css": [
+        "@media (max-width: 768px) {{display: none; }}",
+        ".hide-desktop-custom.center.collection__view-all {display: none;}"
+      ],
+      "settings": {
+        "order_no": "7",
+        "mb_class": "",
+        "title": "Selling out fast",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "best-selling-products",
+        "products_to_show": 10,
+        "products_to_show_mb": 4,
+        "columns_desktop": 5,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_mobile_FPPEtt": {
+      "type": "collection-list-mobile",
+      "blocks": {
+        "featured_collection_BjwMpb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/1000266311.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/1000266311.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/barbecue-outdoor-dining-items",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_V8FTn3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/1000266315.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/1000266315.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/gardening",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_kRjjNC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/1000266317.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/1000266317.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/gardening-landscaping-items",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_QgUeCK": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/1000266319.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/1000266319.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/gardening-tools-items",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_ggj9LP": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/1000266313.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/1000266313.png",
+            "custom_title": "",
+            "collection_url": "shopify:\/\/collections\/watering-equipment",
+            "hide_this_slide_mobile": false
+          }
+        },
+        "featured_collection_xamNXM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "custom_image": "shopify:\/\/shop_images\/1000266309.png",
+            "custom_mobile_image": "shopify:\/\/shop_images\/1000266309.png",
+            "custom_title": "",
+            "collection_url": "https:\/\/deodap.in\/collections\/solar-wind-power-items",
+            "hide_this_slide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_BjwMpb",
+        "featured_collection_V8FTn3",
+        "featured_collection_kRjjNC",
+        "featured_collection_QgUeCK",
+        "featured_collection_ggj9LP",
+        "featured_collection_xamNXM"
+      ],
+      "custom_css": [
+        ".grid__item {width: calc(30% - var(--grid-mobile-horizontal-spacing) * 3 \/ 4);}",
+        "img {width: 100%; margin-block: 0rem;}",
+        ".title-wrapper--self-padded-mobile {padding-left: 0rem; padding-right: 0rem;}",
+        ".custom-collection-list-heading {color: #000; padding: 0px 0;}"
+      ],
+      "name": "collection-3",
+      "settings": {
+        "class": "Homepage-categories_new_design",
+        "tracking-class": "top-categories-mob",
+        "order_no": "7",
+        "title": "Outdoor Living",
+        "image_heading": "shopify:\/\/shop_images\/Outdoor_Living.png",
+        "image_fetchpriority": false,
+        "image_heading_link": "shopify:\/\/collections\/outdoor-living",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "3",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_home_collection_knXKzV": {
+      "type": "featured-home-collection",
+      "custom_css": [
+        "@media (min-width: 769px) {{display: none; }}",
+        "@media screen and (max-width: 767px) {.card-coll-new {box-shadow: none !important; padding-block: 0; } .card.card--standard.card--media {box-shadow: 0 1px 4px #8080801c; } .slider__slide {padding-block: 2rem !important; } .title-wrapper {margin-bottom: 0rem; } .custom-collection-view-all {background: #ef3639; text-transform: uppercase; line-height: 10px; font-size: 12px; min-height: 40px !important; letter-spacing: normal; } .collection__view-all {display: none; }}"
+      ],
+      "name": "featured-home-collection",
+      "settings": {
+        "order_no": "6",
+        "mb_class": "just-arrived-mb",
+        "title": "Selling out fast",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "best-selling-products",
+        "products_to_show": 10,
+        "products_to_show_mb": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "slideshow_nFrjb6": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_bwLTyV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_9_aaeedb89-d265-41d1-8c00-c71614b3111e.png",
+            "slide-link": "",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_bwLTyV"
+      ],
+      "custom_css": [
+        "{padding: 20px 0 20px 0;}",
+        ".banner-not-clickable a {pointer-events: none !important; cursor: default !important;}"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "custom_class": "banner-not-clickable",
+        "order_no": "9",
+        "html": "",
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand",
+        "fetch_priority": "",
+        "loading_strategy": ""
+      }
+    },
+    "dropshipping_section_RyJGqK": {
+      "type": "Dropshipping-Section",
+      "blocks": {
+        "small_image_7ArmwH": {
+          "type": "small_image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Dropshipping_Webinar_1300x500px.jpg_4.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/Dropshipping_Webinar_1300x500px.jpg_4.jpg",
+            "link": "https:\/\/us06web.zoom.us\/webinar\/register\/8517453003759\/WN_NcSxgSniRWGIxUKTO6_HVg",
+            "custom_class": ""
+          }
+        },
+        "small_image_Y8Gehf": {
+          "type": "small_image",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/unnamed_1.png",
+            "image_mobile": "shopify:\/\/shop_images\/unnamed_1.png",
+            "link": "https:\/\/franchise.deodap.com\/",
+            "custom_class": "Home-page-mall-banner"
+          }
+        }
+      },
+      "block_order": [
+        "small_image_7ArmwH",
+        "small_image_Y8Gehf"
+      ],
+      "name": "Dropshipping-Section",
+      "settings": {
+        "order_no": "9",
+        "heading_text": "START DEODAP WHOLESALE MALL IN YOUR CITY",
+        "button_text": "Learn More",
+        "button_link": "https:\/\/franchise.deodap.com\/"
+      }
+    },
+    "social_media_icons_XGXNmH": {
+      "type": "social-media-icons",
+      "blocks": {
+        "text_J7Wnwb": {
+          "type": "text",
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/svgviewer-output_5.svg",
+            "add_count": "90,00,000+",
+            "add_sociel_text": "Downloads",
+            "add_border": "#161616",
+            "add_sociel_url": "https:\/\/play.google.com\/store\/apps\/details?id=com.deodap.gallery"
+          }
+        },
+        "text_iykQR9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/Frame_42_2.svg",
+            "add_count": "5,28,300+",
+            "add_sociel_text": "Followers",
+            "add_border": "#d43d92",
+            "add_sociel_url": "https:\/\/www.instagram.com\/deodap_com\/"
+          }
+        },
+        "text_3e3gEY": {
+          "type": "text",
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/Frame_42.svg",
+            "add_count": "1,59,309+",
+            "add_sociel_text": "Subscribers",
+            "add_border": "#ea3140",
+            "add_sociel_url": "https:\/\/www.youtube.com\/@OnlineBusinessIdeasbyDeoDap"
+          }
+        },
+        "text_NRaeAa": {
+          "type": "text",
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/Frame_43.png",
+            "add_count": "1,11,000",
+            "add_sociel_text": "Followers",
+            "add_border": "#fac500",
+            "add_sociel_url": "https:\/\/mojapp.in\/@deodap_com?referrer=UAwJKeL-xP7A1F"
+          }
+        },
+        "text_aaAX64": {
+          "type": "text",
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/Group_38.svg",
+            "add_count": "117,900",
+            "add_sociel_text": "Followers",
+            "add_border": "#239df0",
+            "add_sociel_url": "https:\/\/www.facebook.com\/deodap\/"
+          }
+        },
+        "text_AGeDJD": {
+          "type": "text",
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/Frame_42_1.svg",
+            "add_count": "18,812+",
+            "add_sociel_text": "Followers",
+            "add_border": "#0d8ccb",
+            "add_sociel_url": "https:\/\/t.me\/s\/DeoDap"
+          }
+        },
+        "text_n7dmPE": {
+          "type": "text",
+          "settings": {
+            "add_image": "shopify:\/\/shop_images\/2062095_application_chat_communication_logo_whatsapp_icon_1.svg",
+            "add_count": "72,000+",
+            "add_sociel_text": "Followers",
+            "add_border": "#25d366",
+            "add_sociel_url": "https:\/\/www.whatsapp.com\/channel\/0029VajvZh0GU3BGezMZA800"
+          }
+        },
+        "image_picker_J8qD3V": {
+          "type": "image_picker",
+          "settings": {
+            "add_icon": "shopify:\/\/shop_images\/e57ef7499fee378aff0b2032b5e5db25-optimized.webp",
+            "add_border_2": "#ff9900",
+            "add_ship_url": "https:\/\/www.amazon.in\/s?k=deodap&crid=2GUWTOIK0NZEF&sprefix=deodap%2Caps%2C258&ref=nb_sb_noss_1"
+          }
+        },
+        "image_picker_MpVFhE": {
+          "type": "image_picker",
+          "settings": {
+            "add_icon": "shopify:\/\/shop_images\/flipkart_1.svg",
+            "add_border_2": "#107bd4",
+            "add_ship_url": "https:\/\/www.flipkart.com\/search?q=deodap&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
+          }
+        },
+        "image_picker_b9B3RD": {
+          "type": "image_picker",
+          "settings": {
+            "add_icon": "shopify:\/\/shop_images\/Vector_2.svg",
+            "add_border_2": "#f43397",
+            "add_ship_url": "https:\/\/www.meesho.com\/DeoDat?ms=2"
+          }
+        },
+        "image_picker_U7w8U3": {
+          "type": "image_picker",
+          "settings": {
+            "add_icon": "shopify:\/\/shop_images\/Group_46.svg",
+            "add_border_2": "#e11b22",
+            "add_ship_url": "https:\/\/www.tradeindia.com\/deodap-international-private-limited-16255471\/"
+          }
+        },
+        "image_picker_z484CN": {
+          "type": "image_picker",
+          "settings": {
+            "add_icon": "shopify:\/\/shop_images\/IndiaMart.webp",
+            "add_border_2": "#291971",
+            "add_ship_url": "https:\/\/www.indiamart.com\/deodap\/"
+          }
+        },
+        "image_picker_9cqiyy": {
+          "type": "image_picker",
+          "settings": {
+            "add_icon": "shopify:\/\/shop_images\/justdial-seeklogo_1.svg",
+            "add_border_2": "#1274c0",
+            "add_ship_url": "https:\/\/www.justdial.com\/Rajkot\/Deodap-Near-Ram-Villa-Apartment-University-Road\/0281PX281-X281-171127190629-H1Q2_BZDET"
+          }
+        }
+      },
+      "block_order": [
+        "text_J7Wnwb",
+        "text_iykQR9",
+        "text_3e3gEY",
+        "text_NRaeAa",
+        "text_aaAX64",
+        "text_AGeDJD",
+        "text_n7dmPE",
+        "image_picker_J8qD3V",
+        "image_picker_MpVFhE",
+        "image_picker_b9B3RD",
+        "image_picker_U7w8U3",
+        "image_picker_z484CN",
+        "image_picker_9cqiyy"
+      ],
+      "settings": {
+        "order_no": "12",
+        "show_count": false
+      }
+    },
+    "custom_liquid_UHi6VL": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<script async src='\/\/asset.fwcdn3.com\/js\/fwn.js?business_id=g1WWKj'><\/script>\n<fw-storyblock\n      channel=\"deodap\"\n      mode=\"pinned\"\n      autoplay=\"true\"                                     \n      playlist=\"g1W14l\"\n    ><\/fw-storyblock>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "featured_cards_carousel_HidaJC",
+    "collection_list_mobile_zqzFJ6",
+    "1745385836897195a2",
+    "collection_list_mobile_q4Eenr",
+    "promotional_grid_slider_Nqr4JP",
+    "promotional_grid_slider_RrKPG3",
+    "app_wrapper_87DFzA",
+    "collection_list_mobile_FHxGcD",
+    "collection_list_mobile_UD9LeM",
+    "featured_home_collection_MAbF6x",
+    "collection_list_mobile_FPPEtt",
+    "featured_home_collection_knXKzV",
+    "slideshow_nFrjb6",
+    "dropshipping_section_RyJGqK",
+    "social_media_icons_XGXNmH",
+    "custom_liquid_UHi6VL"
+  ]
+}
