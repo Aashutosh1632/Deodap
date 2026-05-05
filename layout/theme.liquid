@@ -1,23 +1,40 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name="theme-color" content="">
+      <meta name="google-adsense-account" content="ca-pub-8932742283941573">
+      <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+      <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+      <link rel="dns-prefetch" href="https://www.clarity.ms">
+      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+      <link rel="dns-prefetch" href="https://checkout-merchant.snapmint.com">
       {%- if settings.goEnable -%}
       <link rel="dns-prefetch" href="https://pdp.gokwik.co/">
       <link rel="dns-prefetch" href="https://api.gokwik.co">
       {%- render 'gokwik' -%}
       {%- endif -%}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-J73G2Y58J4"></script>
       <script>
+         // GA4 (gtag) — deferred until first interaction or 3s timeout
          window.dataLayer = window.dataLayer || [];
          function gtag(){dataLayer.push(arguments);}
          gtag('js', new Date());
          gtag('config','G-J73G2Y58J4',{ 'groups': 'GA4'});
+         function _loadGA4() {
+           if (window._ga4Loaded) return;
+           window._ga4Loaded = true;
+           var s = document.createElement('script');
+           s.async = true;
+           s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J73G2Y58J4';
+           document.head.appendChild(s);
+         }
+         ['scroll','click','touchstart','keydown','mousemove'].forEach(function(evt) {
+           window.addEventListener(evt, _loadGA4, {once: true, passive: true});
+         });
+         setTimeout(_loadGA4, 3000);
       </script>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="google-adsense-account" content="ca-pub-8932742283941573">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="theme-color" content="">
       {%- if template contains 'collection' and current_tags -%}
       <meta name="robots" content="noindex">
       <link rel="canonical" href="{{ shop.url }}{{ collection.url }}">
@@ -71,7 +88,7 @@
       <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
       {%- unless template == 'index' or template == 'product' -%}
-      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer="defer"></script>
       {%- endunless -%}
       {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
@@ -86,7 +103,8 @@
       <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
       {{ 'custom_mega_menu_css.css' | asset_url | stylesheet_tag: preload: true }}
       {%- unless template == 'index' or template == 'product' -%}
-      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"></noscript>
       {%- endunless -%}
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
       <noscript>
@@ -126,11 +144,18 @@
          if (Shopify.designMode) {  document.documentElement.classList.add('shopify-design-mode');  }
       </script>
       <style>
-         {%- if template == 'cart' -%}.back-to-top.active-progress {display: none;}div#chat-widget {display: none !important;}{%- endif -%}
-         @media(max-width: 767px){ footer .footer-block__details-content {   display: none;    }   }{%- if page == 'cart' -%}.cart-item__image { height: auto; width: 70px; }{%- endif -%}
-         {%- if collection.handle == 'mega-sale' or card_product.tags == 'Including Tax' -%}span.tag.tag-freeship-include-txt {left: 0;bottom: unset;position: absolute;z-index: 1;color: #0d1627 !important;font-weight: 400 !important;color: #fff;font-weight: 600;width: fit-content;text-align: center;padding: 5px;background-color: #eee !important;font-size: 13px;line-height: normal;}{%- endif -%}
-         {%- if template == 'index' -%}.whatmore-minimized-video-view-right { display: none;}{%- endif -%}
-         {%- if template == 'collection' -%}.jdgm-widget.jdgm-preview-badge.jdgm--done-setup {display: block !important;min-height: 21px !important;}{%- endif -%}
+         .whatsapp.FadeIn{display:none !important;}
+         @media(max-width: 767px){footer .footer-block__details-content{display:none;}}
+         {%- if template == 'cart' -%}.back-to-top.active-progress{display:none;}div#chat-widget{display:none !important;}{%- endif -%}
+         {%- if page == 'cart' -%}.cart-item__image{height:auto;width:70px;}{%- endif -%}
+         {%- if collection.handle == 'mega-sale' or card_product.tags == 'Including Tax' -%}span.tag.tag-freeship-include-txt{left:0;bottom:unset;position:absolute;z-index:1;color:#0d1627 !important;font-weight:400 !important;color:#fff;font-weight:600;width:fit-content;text-align:center;padding:5px;background-color:#eee !important;font-size:13px;line-height:normal;}{%- endif -%}
+         {%- if template == 'index' -%}.whatmore-minimized-video-view-right{display:none;}{%- endif -%}
+         {%- if template == 'collection' -%}.jdgm-widget.jdgm-preview-badge.jdgm--done-setup{display:block !important;min-height:21px !important;}{%- endif -%}
+         {%- if template.name == 'article' -%}
+         .subcollections-menu__menu-items h2,h6,.highlights-banner__heading,h5,h4,.featured-collection__title-card-heading,h3,h2,.slideshow-slide__heading,h1,.age-gate__heading{text-transform:none !important;}
+         a,.a,span,.span,p,.p,h2,.h2,h1,.h1,h3,.h3,h4,.h4,h5,.h5,h6,.h6 strong,.strong{word-wrap:break-word;}
+         .rte blockquote{display:block !important;}
+         {%- endif -%}
       </style>
       
       <!-- Google Tag Manager — interaction deferred -->
@@ -161,16 +186,6 @@
       </script>
       <!-- End Google Tag Manager -->
 
-      {%- if template.name == 'article' -%}
-      <style>
-         .subcollections-menu__menu-items h2, h6, .highlights-banner__heading, h5, h4, .featured-collection__title-card-heading, h3, h2, .slideshow-slide__heading, h1, .age-gate__heading { text-transform: none !important;}
-         a, .a, span, .span, p, .p, h2, .h2, h1, .h1, h3, .h3, h4, .h4, h5, .h5, h6, .h6 strong, .strong{ word-wrap: break-word;}
-         .rte blockquote { display: block !important;}
-      </style>
-      {%- endif -%}
-      <style>
-         .whatsapp.FadeIn{ display:none !important;}
-      </style>
       <script>
         // Microsoft Clarity — deferred until interaction
         window.clarity = window.clarity || function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
@@ -344,8 +359,10 @@
       </script>
       {%- endif -%}
       <!-- Begin Shopify–payment-cart JavaScript -->
+      {%- if template contains 'product' or template contains 'cart' or template contains 'checkout' -%}
       <script type="text/javascript"> var mid = '6233';</script>
       <script src="https://checkout-merchant.snapmint.com/js/v1/6233" defer></script>
+      {%- endif -%}
       <!-- End Shopify-payment JavaScript -->
       {% render 'wizzy.search.filters.styles' %}
       {% render 'wizzy.search.filters.scripts' %}
