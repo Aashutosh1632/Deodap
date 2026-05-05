@@ -10,27 +10,21 @@
 {%- endif -%}
 
 <style>
-  header-drawer { justify-self: start; margin-left: -1.2rem; }
-  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-    .scrolled-past-header .header__heading-logo-wrapper { width: 75%; }
-  {%- endif -%}
-  {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) { header-drawer { display: none; } }
-  {%- endif -%}
-  .menu-drawer-container { height: 44px; }
-  .list-menu { list-style: none; padding: 0; margin: 0; }
-  .list-menu--inline { display: inline-flex; flex-wrap: wrap; gap: 5px; }
-  summary.list-menu__item { padding-right: 2.7rem; }
-  .list-menu__item { display: flex; align-items: center; line-height: calc(1 + 0.3 / var(--font-body-scale)); }
-  .list-menu__item--link { text-decoration: none; padding-bottom: 1rem; padding-top: 1rem; line-height: calc(1 + 0.8 / var(--font-body-scale)); }
-  @media screen and (min-width: 750px) { .list-menu__item--link { padding-bottom: 0.5rem; padding-top: 0.5rem; } }
-
-  /* Account section layout */
-  .site-header-right { display: flex; align-items: center; }
-  .site-header-actions { margin: 0; }
-  .site-header-actions__account-link { display: flex; margin-right: 0 !important; justify-content: flex-end; }
-  .site-header_account-link-text.mb-acct--b2b { width: 88px; }
-  .show-acc-tab { display: none; }
+  header-drawer{justify-self:start;margin-left:-1.2rem;}
+  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}.scrolled-past-header .header__heading-logo-wrapper{width:75%;}{%- endif -%}
+  {%- if section.settings.menu_type_desktop != "drawer" -%}@media screen and (min-width:990px){header-drawer{display:none;}}{%- endif -%}
+  .menu-drawer-container{height:44px;}
+  .list-menu{list-style:none;padding:0;margin:0;}
+  .list-menu--inline{display:inline-flex;flex-wrap:wrap;gap:5px;}
+  summary.list-menu__item{padding-right:2.7rem;}
+  .list-menu__item{display:flex;align-items:center;line-height:calc(1 + 0.3 / var(--font-body-scale));}
+  .list-menu__item--link{text-decoration:none;padding-bottom:1rem;padding-top:1rem;line-height:calc(1 + 0.8 / var(--font-body-scale));}
+  @media screen and (min-width:750px){.list-menu__item--link{padding-bottom:0.5rem;padding-top:0.5rem;}}
+  .site-header-right{display:flex;align-items:center;}
+  .site-header-actions{margin:0;}
+  .site-header-actions__account-link{display:flex;margin-right:0 !important;justify-content:flex-end;}
+  .site-header_account-link-text.mb-acct--b2b{width:88px;}
+  .show-acc-tab{display:none;}
 </style>
 
 {%- style -%}
@@ -40,7 +34,9 @@
   @media screen and (min-width: 990px) { .header { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
 {%- endstyle -%}
 
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- if settings.cart_type == "notification" -%}
+  <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 <script src="{{ 'header-account-tab.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
@@ -127,13 +123,9 @@
                 <li class="site-header-actions__account-link acct-tab kplogin">
                   <a class="site-header_account-link-anchor" href="/account">
                     <span class="site-header__account-icon">{%- render 'kp-icon', id: 'icon-account' -%}</span>
-                    <svg class="ac-mb-svg" xmlns="http://www.w3.org/2000/svg" height="10" width="10" viewBox="0 0 512 512" aria-hidden="true">
-                      <path fill="#ffffff" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
-                    </svg>
+                    {%- render 'icon-account-chevron-mb' -%}
                     <span class="site-header_account-link-text mb-acct">My Account</span>
-                    <svg class="ac-dec-svg" xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512" aria-hidden="true">
-                      <path fill="#ffffff" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
-                    </svg>
+                    {%- render 'icon-account-chevron-dec' -%}
                   </a>
                 </li>
               {%- endif -%}
@@ -141,13 +133,9 @@
               <li class="site-header-actions__account-link kplogin">
                 <a class="site-header_account-link-anchor" href="/account">
                   <span class="site-header__account-icon">{%- render 'kp-icon', id: 'icon-account' -%}</span>
-                  <svg class="ac-mb-svg" xmlns="http://www.w3.org/2000/svg" height="10" width="10" viewBox="0 0 512 512" aria-hidden="true">
-                    <path fill="#ffffff" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
-                  </svg>
+                  {%- render 'icon-account-chevron-mb' -%}
                   <span class="site-header_account-link-text mb-acct">LOGIN</span>
-                  <svg class="ac-dec-svg" xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512" aria-hidden="true">
-                    <path fill="#ffffff" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
-                  </svg>
+                  {%- render 'icon-account-chevron-dec' -%}
                 </a>
               </li>
             {%- endif -%}
