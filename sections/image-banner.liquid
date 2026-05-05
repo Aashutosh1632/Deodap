@@ -1,4 +1,5 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'section-image-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'section-image-banner.css' | asset_url }}"></noscript>
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
@@ -34,13 +35,13 @@
 
 {%- liquid
   assign full_width = '100vw'
-  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+  assign widths = '375, 550, 750, 1100, 1500, 1900, 2400'
 
   if section.settings.image_behavior == 'ambient'
     assign half_width = '60vw'
     assign full_width = '120vw'
     assign stacked_sizes = '(min-width: 750px) 60vw, 120vw'
-    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
+    assign widths = '450, 660, 900, 1320, 1800, 2280, 2880'
   elsif section.settings.image_behavior == 'fixed' or section.settings.image_behavior == 'zoom-in'
     assign half_width = '100vw'
     assign stacked_sizes = '100vw'
@@ -49,8 +50,10 @@
     assign stacked_sizes = '(min-width: 750px) 50vw, 100vw'
   endif
   assign fetch_priority = 'auto'
+  assign image_loading = 'lazy'
   if section.index == 1
     assign fetch_priority = 'high'
+    assign image_loading = 'eager'
   endif
 -%}
 
@@ -82,6 +85,8 @@
           class: image_class,
           sizes: sizes,
           widths: widths,
+          loading: image_loading,
+          decoding: 'async',
           fetchpriority: fetch_priority
       }}
     </div></a>
@@ -114,6 +119,8 @@
           class: image_class_2,
           sizes: sizes,
           widths: widths,
+          loading: image_loading,
+          decoding: 'async',
           fetchpriority: fetch_priority
       }}
     </div>
