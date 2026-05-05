@@ -1,7 +1,13 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
-{{ 'custom-slideshow.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'section-image-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slideshow.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'custom-slideshow.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="{{ 'section-image-banner.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-slideshow.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'custom-slideshow.css' | asset_url }}">
+</noscript>
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
     @media (max-width:768px){ #shopify-section-{{ section.id }} {order: {{section.settings.order_no }};} }
@@ -70,13 +76,13 @@ button.new-slideshow-btn.slider-button--prev { left: 1%; }
         {%- endif -%}
     </span>
   {%- endif -%}
+  {%- style -%}
+    {%- for block in section.blocks -%}
+      #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after { opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }}; }
+    {%- endfor -%}
+  {%- endstyle -%}
   <div class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.settings.show_text_below %} banner--mobile-bottom{% endif %}{% if section.blocks.first.settings.image == blank %} slideshow--placeholder{% endif %}" id="Slider-{{ section.id }}" aria-live="polite" aria-atomic="true" data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed }}">
     {%- for block in section.blocks -%}
-      <style>
-        #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
-          opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
-        }
-      </style>
       <div class="slideshow__slide grid__item grid--1-col slider__slide" id="Slide-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }} role="group" aria-roledescription="{{ 'sections.slideshow.slide' | t }}" aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}" tabindex="-1">
         <div class="cus-img-radius slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}" >
           {%- if block.settings.image -%}
@@ -84,37 +90,45 @@ button.new-slideshow-btn.slider-button--prev { left: 1%; }
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
               if section.settings.image_behavior == 'ambient'
                 assign sizes = '120vw'
-                assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600'
+                assign widths = '450, 660, 900, 1320, 1800, 2280, 2880'
               else
                 assign sizes = '100vw'
-                assign widths = '300,400,500,600,700,800,900,1000,1200,1400,1600,1800,1980,2000,2200,2400,2600,2800,3000,3200'
+                assign widths = '375, 550, 750, 1100, 1500, 1900, 2400'
               endif
             -%}
             {%- liquid
-                if forloop.first
-                  assign loading_strategy = section.settings.loading_strategy
-                  assign fetch_priority =  section.settings.fetch_priority
-                else
-                  assign loading_strategy = 'lazy'
-                  assign fetch_priority = 'low'
-                endif
-              -%}
+              if forloop.first
+                assign loading_strategy = section.settings.loading_strategy | default: 'eager'
+                assign fetch_priority = section.settings.fetch_priority | default: 'high'
+              else
+                assign loading_strategy = 'lazy'
+                assign fetch_priority = 'low'
+              endif
+            -%}
             <div class="slideshow-image-wrapper">
                   <picture>
                     {%- if block.settings.mobile_image != blank -%}
-                      <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 600 }}" width="{{ block.settings.mobile_image.width }}" height="{{ block.settings.mobile_image.height }}">
+                      <source
+                        media="(max-width: 749px)"
+                        srcset="{{ block.settings.mobile_image | image_url: width: 375 }} 375w, {{ block.settings.mobile_image | image_url: width: 550 }} 550w, {{ block.settings.mobile_image | image_url: width: 750 }} 750w"
+                        sizes="100vw"
+                        width="{{ block.settings.mobile_image.width }}"
+                        height="{{ block.settings.mobile_image.height }}">
                     {%- endif -%}
-                    <img srcset=" {%- if block.settings.image.width >= 360 -%}{{ block.settings.image | image_url: width: 360 }} 360w,{%- endif -%}
-                          {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | image_url: width: 535 }} 535w,{%- endif -%}
-                          {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
-                          {%- if block.settings.image.width >= 1070 -%}{{ block.settings.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-                          {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                          {%- if block.settings.image.width >= 1800 -%}{{ block.settings.image | image_url: width: 1800 }} 1800w,{%- endif -%}
-                          {%- if block.settings.image.width >= 1920 -%}{{ block.settings.image | image_url: width: 1900 }} 1920w,{%- endif -%}
-                          {%- if block.settings.image.width >= 2400 -%}{{ block.settings.image | image_url: width: 2400 }} 2400w,{%- endif -%}
-                          {%- if block.settings.image.width >= 2560 -%}{{ block.settings.image | image_url: width: 2560 }} 2560w,{%- endif -%}
-                          {{ block.settings.image | image_url }} {{ block.settings.image.width }}w"
-                      src="{{ block.settings.image | image_url: width: 1920 }}" alt="{{ block.settings.image.alt | escape }}" {% if forloop.first %} fetchpriority="{{ fetch_priority }}" {% endif %} sizes="{{ sizes }}" width="{{ block.settings.image.width }}" height="{{ height }}" class="slideshow-image" loading="{{ loading_strategy }}">
+                    {{
+                      block.settings.image
+                      | image_url: width: 2400
+                      | image_tag:
+                        class: 'slideshow-image',
+                        widths: widths,
+                        sizes: sizes,
+                        width: block.settings.image.width,
+                        height: height,
+                        loading: loading_strategy,
+                        decoding: 'async',
+                        fetchpriority: fetch_priority,
+                        alt: block.settings.image.alt
+                    }}
                   </picture>
                 </div>
 
