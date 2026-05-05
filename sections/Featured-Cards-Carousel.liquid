@@ -4,12 +4,6 @@
 <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}"></noscript>
 
-{%- comment -%} Show first slide immediately before Swiper JS loads {%- endcomment -%}
-<style>
-    .featured-carousel-wrapper { opacity: 0; transition: opacity 0.3s ease; }
-  .featured-carousel-wrapper.carousel-ready { opacity: 1; }
-</style>
-
 <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
 <script src="{{ 'featured-cards-carousel.js' | asset_url }}" defer></script>
 
@@ -20,19 +14,10 @@
       order: {{ section.settings.order_no }};
     }
   }
-  .featured-card-inner {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* adjust to match your actual banner ratio */
-    overflow: hidden;
-    background: #f5f5f5;
-  }
-  .featured-card-inner img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
+  /* Reserve slide height to prevent CLS before Swiper initializes */
+  .featured-carousel .swiper-slide { aspect-ratio: 16 / 9; }
+  .featured-carousel .featured-card,
+  .featured-carousel .featured-card-inner { height: 100%; }
 {%- endstyle -%}
 
 <div class="featured-carousel-wrapper {{ section.settings.custom_class }}">
@@ -54,22 +39,35 @@
           <div class="featured-card-inner">
             <a href="{{ block.settings.link }}">
 
-              {%- comment -%} Desktop image {%- endcomment -%}
-              {%- if desktop_image != blank -%}
-                {%- if forloop.first -%}
-                  <img
-                    src="{{ desktop_image | image_url: width: 1200 }}"
-                    srcset="{{ desktop_image | image_url: width: 750 }} 750w, {{ desktop_image | image_url: width: 1200 }} 1200w"
-                    sizes="(min-width: 750px) 100vw, 0px"
-                    class="featured-img featured-img-desktop"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    width="{{ desktop_image.width }}"
-                    height="{{ desktop_image.height }}"
-                    alt="{{ desktop_alt }}"
-                  >
-                {%- else -%}
+              {%- if forloop.first -%}
+                {%- comment -%} First slide: single <picture> so the browser fetches only the matching image (saves ~one image download on every visit) {%- endcomment -%}
+                {%- if desktop_image != blank -%}
+                  <picture>
+                    {%- if block.settings.mobile_image != blank -%}
+                      <source media="(max-width: 768px)"
+                              srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 550 }} 550w"
+                              sizes="100vw"
+                              width="{{ mobile_image.width }}"
+                              height="{{ mobile_image.height }}">
+                    {%- endif -%}
+                    <img
+                      src="{{ desktop_image | image_url: width: 1200 }}"
+                      srcset="{{ desktop_image | image_url: width: 750 }} 750w, {{ desktop_image | image_url: width: 1200 }} 1200w"
+                      sizes="100vw"
+                      class="featured-img"
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                      width="{{ desktop_image.width }}"
+                      height="{{ desktop_image.height }}"
+                      alt="{{ desktop_alt }}"
+                    >
+                  </picture>
+                {%- endif -%}
+              {%- else -%}
+
+                {%- comment -%} Desktop image (subsequent slides) {%- endcomment -%}
+                {%- if desktop_image != blank -%}
                   {{ desktop_image | image_url: width: 1200 | image_tag:
                     widths: '550, 750, 1100, 1200',
                     sizes: '(min-width: 750px) 100vw, 0px',
@@ -81,24 +79,9 @@
                     alt: desktop_alt
                   }}
                 {%- endif -%}
-              {%- endif -%}
 
-              {%- comment -%} Mobile image {%- endcomment -%}
-              {%- if mobile_image != blank -%}
-                {%- if forloop.first -%}
-                  <img
-                    src="{{ mobile_image | image_url: width: 550 }}"
-                    srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 550 }} 550w"
-                    sizes="100vw"
-                    class="featured-img featured-img-mobile"
-                    alt="{{ mobile_alt }}"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    width="{{ mobile_image.width }}"
-                    height="{{ mobile_image.height }}"
-                  >
-                {%- else -%}
+                {%- comment -%} Mobile image (subsequent slides) {%- endcomment -%}
+                {%- if mobile_image != blank -%}
                   {{ mobile_image | image_url: width: 550 | image_tag:
                     widths: '375, 550',
                     sizes: '100vw',
@@ -110,6 +93,7 @@
                     alt: mobile_alt
                   }}
                 {%- endif -%}
+
               {%- endif -%}
 
             </a>
