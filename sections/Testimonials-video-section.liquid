@@ -1,76 +1,58 @@
 <style>
-  #shopify-section-{{ section.id }} .new-videos {
-    display: grid;
-    column-gap: 20px;
-    row-gap: 30px;
-    grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
-  }
-
-  @media only screen and (max-width: 860px) {
-    #shopify-section-{{ section.id }} .new-videos {
-      display: grid;
-      column-gap: 20px;
-      row-gap: 20px;
-      grid-template-columns: repeat({{ section.settings.columns_mobile }}, minmax(0, 1fr));
-    }
-  }
-
+  #shopify-section-{{ section.id }} .new-videos{display:grid;column-gap:20px;row-gap:30px;grid-template-columns:repeat({{ section.settings.columns_desktop }},minmax(0,1fr));}
+  @media only screen and (max-width:860px){#shopify-section-{{ section.id }} .new-videos{display:grid;column-gap:20px;row-gap:20px;grid-template-columns:repeat({{ section.settings.columns_mobile }},minmax(0,1fr));}}
+  #shopify-section-{{ section.id }} .Vid{aspect-ratio:9/16;background:#000;}
   #shopify-section-{{ section.id }} .Vid iframe,
-  #shopify-section-{{ section.id }} .Vid .video-element {
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    display: block;
-    border: none;
-  }
+  #shopify-section-{{ section.id }} .Vid .video-element{width:100%;height:100%;aspect-ratio:9/16;display:block;border:none;}
 </style>
 
 <div class="page__container page-width">
-  <h1 class="vid-head">{{ section.settings.heading }}</h1>
+  <h2 class="vid-head">{{ section.settings.heading }}</h2>
   <div class="new-videos">
-    {% for block in section.blocks %}
+    {%- for block in section.blocks -%}
       <div class="Vid" {{ block.shopify_attributes }}>
 
-        {% if block.settings.video_type == 'youtube' %}
-          {% assign yt_url = block.settings.youtube_url %}
-          {% assign embed_url = '' %}
+        {%- if block.settings.video_type == 'youtube' -%}
+          {%- assign yt_url = block.settings.youtube_url -%}
 
-          {% if yt_url contains 'youtu.be/' %}
-            {% assign video_id = yt_url | split: 'youtu.be/' | last | split: '?' | first %}
-          {% elsif yt_url contains 'watch?v=' %}
-            {% assign video_id = yt_url | split: 'watch?v=' | last | split: '&' | first %}
-          {% elsif yt_url contains '/shorts/' %}
-            {% assign video_id = yt_url | split: '/shorts/' | last | split: '?' | first %}
-          {% else %}
-            {% assign video_id = '' %}
-          {% endif %}
+          {%- if yt_url contains 'youtu.be/' -%}
+            {%- assign video_id = yt_url | split: 'youtu.be/' | last | split: '?' | first -%}
+          {%- elsif yt_url contains 'watch?v=' -%}
+            {%- assign video_id = yt_url | split: 'watch?v=' | last | split: '&' | first -%}
+          {%- elsif yt_url contains '/shorts/' -%}
+            {%- assign video_id = yt_url | split: '/shorts/' | last | split: '?' | first -%}
+          {%- else -%}
+            {%- assign video_id = '' -%}
+          {%- endif -%}
 
-          {% if video_id != '' %}
+          {%- if video_id != '' -%}
             <iframe
-              src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&playsinline=1&controls=1"
+              src="https://www.youtube-nocookie.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&playsinline=1&controls=1"
               allow="autoplay; encrypted-media"
               allowfullscreen
               loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
               title="{{ block.settings.head | escape }}"
             ></iframe>
-          {% endif %}
+          {%- endif -%}
 
-        {% else %}
-          {% if block.settings.video != blank %}
-            <video class="video-element" autoplay muted loop playsinline controls>
+        {%- else -%}
+          {%- if block.settings.video != blank -%}
+            <video class="video-element" autoplay muted loop playsinline controls preload="metadata">
               <source src="{{ block.settings.video | escape }}" type="video/mp4">
             </video>
-          {% endif %}
-        {% endif %}
+          {%- endif -%}
+        {%- endif -%}
 
-        {% if block.settings.head != blank %}
-          <h2 class="vid-h2">{{ block.settings.head }}</h2>
-        {% endif %}
-        {% if block.settings.subhead != blank %}
+        {%- if block.settings.head != blank -%}
+          <h3 class="vid-h2">{{ block.settings.head }}</h3>
+        {%- endif -%}
+        {%- if block.settings.subhead != blank -%}
           <p class="vid-p">{{ block.settings.subhead }}</p>
-        {% endif %}
+        {%- endif -%}
 
       </div>
-    {% endfor %}
+    {%- endfor -%}
   </div>
 </div>
 
