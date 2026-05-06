@@ -42,119 +42,83 @@
 {% endschema %}
 
 <style>
-.slider-section {
-  padding: 0px 0;
-  overflow: hidden;
+.slider-section { padding: 0; overflow: hidden; }
+.slider-heading { font-size: 28px; font-weight: 700; margin-bottom: 20px; color: #000; }
+.slider-wrapper { overflow: hidden; position: relative; scroll-behavior: smooth; cursor: grab; }
+.slider-wrapper.dragging { cursor: grabbing; }
+.slider-track { display: flex; width: max-content; will-change: transform; }
+.slide-item { min-width: 200px; margin-right: 20px; text-align: center; }
+.slide-item img { width: 100%; height: auto; border-radius: 16px; transition: transform 0.3s ease; }
+.slide-title { margin-top: 10px; font-weight: 600; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .slider-track { animation: scroll 30s linear infinite; }
+  .slider-wrapper:hover .slider-track { animation-play-state: paused; }
 }
 
-.slider-heading {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #000;
-}
-
-.slider-wrapper {
-  overflow: hidden;
-  position: relative;
-  overflow: hidden;
-  scroll-behavior: smooth;
-}
-
-.slider-track {
-  display: flex;
-  width: max-content;
-  animation: scroll 30s linear infinite;
-}
-
-/* Pause on hover */
-.slider-wrapper:hover .slider-track {
-  animation-play-state: paused;
-}
-
-.slide-item {
-  min-width: 200px;
-  margin-right: 20px;
-  text-align: center;
-}
-
-.slide-item img {
-  width: 100%;
-  border-radius: 16px;
-  transition: transform 0.3s ease;
-}
-
-
-.slide-title {
-  margin-top: 10px;
-  font-weight: 600;
-}
-
-/* Infinite animation */
 @keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media screen and (max-width: 768px) {
-  .slide-item {
-    width: 200px;
-    margin-right: 12px;
-  }
-
-  .slider-heading {
-    font-size: 20px;
-  }
-
-  .slide-title {
-    font-size: 13px;
-  }
-}
-
-
-
-.slider-wrapper {
-  cursor: grab;
-}
-
-.slider-wrapper.dragging {
-  cursor: grabbing;
+  .slide-item { width: 200px; margin-right: 12px; }
+  .slider-heading { font-size: 20px; }
+  .slide-title { font-size: 13px; }
 }
 </style>
 
 <div class="slider-section">
   <div class="page-width">
-    <div class="slider-heading">{{ section.settings.heading }}</div>
+    <h2 class="slider-heading">{{ section.settings.heading }}</h2>
 
     <div class="slider-wrapper">
       <div class="slider-track">
 
-        {% for block in section.blocks %}
+        {%- for block in section.blocks -%}
           <div class="slide-item">
             <a href="{{ block.settings.link }}">
-              {% if block.settings.image %}
-                <img src="{{ block.settings.image | image_url: width: 400 }}">
-              {% endif %}
+              {%- if block.settings.image -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag:
+                    widths: '200, 300, 400, 600',
+                    sizes: '200px',
+                    width: block.settings.image.width,
+                    height: block.settings.image.height,
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: block.settings.title
+                }}
+              {%- endif -%}
             </a>
             <div class="slide-title">{{ block.settings.title }}</div>
           </div>
-        {% endfor %}
+        {%- endfor -%}
 
-        <!-- Duplicate for seamless infinite scroll -->
-        {% for block in section.blocks %}
-          <div class="slide-item">
-            <a href="{{ block.settings.link }}">
-              {% if block.settings.image %}
-                <img src="{{ block.settings.image | image_url: width: 400 }}">
-              {% endif %}
+        {%- comment -%} Duplicate set for seamless infinite scroll — hidden from assistive tech {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          <div class="slide-item" aria-hidden="true">
+            <a href="{{ block.settings.link }}" tabindex="-1">
+              {%- if block.settings.image -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag:
+                    widths: '200, 300, 400, 600',
+                    sizes: '200px',
+                    width: block.settings.image.width,
+                    height: block.settings.image.height,
+                    loading: 'lazy',
+                    decoding: 'async',
+                    alt: ''
+                }}
+              {%- endif -%}
             </a>
             <div class="slide-title">{{ block.settings.title }}</div>
           </div>
-        {% endfor %}
+        {%- endfor -%}
 
       </div>
     </div>
