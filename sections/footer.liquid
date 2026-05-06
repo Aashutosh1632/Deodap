@@ -1,28 +1,26 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{{ 'section-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
-{{ 'site-footer.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-newsletter.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'site-footer.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-newsletter.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'site-footer.css' | asset_url }}">
+</noscript>
 {%- style -%}
-  .footer {
-    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;}
-  .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
-
-  @media screen and (min-width: 750px) {
-    .footer {
-      margin-top: {{ section.settings.margin_top }}px;   } .section-{{ section.id }}-padding {  padding-top: {{ section.settings.padding_top }}px;   padding-bottom: {{ section.settings.padding_bottom }}px;  } }
-.footer-nav-icon { display: flex;}
-  span.site-footer-block-icon.accordion--icon {  color: #f32424;}
-  [data-accordion-trigger] .accordion--icon svg {
-    display: block; transition: transform .2scubic-bezier(.4,0,.2,1), color .2scubic-bezier(.4,0,.2,1);fill: currentColor;}
-
-a.googleplay-icon img, a.appstore-icon img {
-    height: 35px;
-    width: auto;
-}
-
+  .footer{margin-top:{{ section.settings.margin_top | times: 0.75 | round: 0 }}px;}
+  .section-{{ section.id }}-padding{padding-top:{{ section.settings.padding_top | times: 0.75 | round: 0 }}px;padding-bottom:{{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;}
+  @media screen and (min-width:750px){.footer{margin-top:{{ section.settings.margin_top }}px;}.section-{{ section.id }}-padding{padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px;}}
+  .footer-nav-icon{display:flex;}
+  span.site-footer-block-icon.accordion--icon{color:#f32424;}
+  [data-accordion-trigger] .accordion--icon svg{display:block;transition:transform .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);fill:currentColor;}
+  a.googleplay-icon img,a.appstore-icon img{height:35px;width:auto;aspect-ratio:564/168;}
 {%- endstyle -%}
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   {%- liquid
@@ -108,28 +106,32 @@ a.googleplay-icon img, a.appstore-icon img {
                     <div class="footer-block__details-content rte"> {{ block.settings.subtext }}  </div>
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
+                      {%- assign has_ticket_link = false -%}
                       <ul class="footer-block__details-content list-unstyled custom-lists" >
                         {%- for link in block.settings.menu.links -%}
+                          {%- if link.url == 'https://deodap.in/account?tab=tickets' -%}{%- assign has_ticket_link = true -%}{%- endif -%}
                           <li {%- if link.url == 'https://deodap.in/account?tab=tickets' -%} class="kplogin" {%- endif -%}>  <a href="{% if link.url == 'https://deodap.in/account?tab=tickets' %}{% if customer %}{{ link.url }}{% else %}/account{% endif %}{% else %}{{ link.url }}{% endif %}" class=" link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %} " data-footer-link="true">  {{ link.title | escape }} </a>  </li>
-                           {%- if link.url == 'https://deodap.in/account?tab=tickets' -%}
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", function () {
-                                            document.querySelectorAll('a[data-footer-link="true"]').forEach(link => {
-                                                link.addEventListener("click", function () {
-                                                    if (!{{ customer | json }}) { 
-                                                        localStorage.setItem("redirect_after_login", "/account?tab=tickets");
-                                                    }
-                                                });
-                                            });
-                                            if ({{ customer | json }} && localStorage.getItem("redirect_after_login")) {
-                                                window.location.href = localStorage.getItem("redirect_after_login"); 
-                                                localStorage.removeItem("redirect_after_login"); 
-                                            }
-                                        });
-                                        </script>
-                             {%- endif -%}
                         {%- endfor -%}
                       </ul>
+                      {%- if has_ticket_link -%}
+                        <script>
+                          (function(){
+                            var isCustomer = {{ customer | json }};
+                            document.addEventListener("DOMContentLoaded", function () {
+                              document.querySelectorAll('a[data-footer-link="true"]').forEach(function(link){
+                                link.addEventListener("click", function () {
+                                  if (!isCustomer) localStorage.setItem("redirect_after_login", "/account?tab=tickets");
+                                });
+                              });
+                              if (isCustomer && localStorage.getItem("redirect_after_login")) {
+                                var url = localStorage.getItem("redirect_after_login");
+                                localStorage.removeItem("redirect_after_login");
+                                window.location.href = url;
+                              }
+                            });
+                          })();
+                        </script>
+                      {%- endif -%}
                     {%- endif -%}
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
@@ -142,7 +144,8 @@ a.googleplay-icon img, a.appstore-icon img {
                             | image_url: width: 1100
                             | image_tag:
                               loading: 'lazy',
-                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                              decoding: 'async',
+                              widths: '100, 200, 400, 550, 800',
                               height: brand_image_height,
                               width: settings.brand_image_width
                           }}
@@ -376,26 +379,22 @@ a.googleplay-icon img, a.appstore-icon img {
     </div>
   </div>
 </footer>
- <script>
-document.addEventListener("DOMContentLoaded", function() {
-  if (window.innerWidth <= 749) {
-  document.querySelectorAll(".footer-nav-icon").forEach(function(footerNav) {
-    footerNav.addEventListener("click", function() {
-      let parentBlock = this.closest(".footer-block");
-      let detailsContent = parentBlock.querySelector(".footer-block__details-content");
-
-      if (detailsContent) {
-        if (detailsContent.style.display === "none" || detailsContent.style.display === "") {
-          detailsContent.style.display = "block";
-        } else {
-          detailsContent.style.display = "none";
-        }
+<script>
+(function(){
+  document.addEventListener("DOMContentLoaded", function() {
+    if (window.innerWidth > 749) return;
+    document.querySelectorAll(".footer-nav-icon").forEach(function(footerNav) {
+      footerNav.addEventListener("click", function() {
+        var parentBlock = this.closest(".footer-block");
+        var detailsContent = parentBlock && parentBlock.querySelector(".footer-block__details-content");
+        if (!detailsContent) return;
+        var hidden = detailsContent.style.display === "none" || detailsContent.style.display === "";
+        detailsContent.style.display = hidden ? "block" : "none";
         this.classList.toggle("active");
-      }
+      });
     });
   });
-  }
-});
+})();
 </script>
 <style>
   @media (min-width:767px){ .footer-icon-accor{display:none !important; } } @media (max-width:768px){ .footer-block__details-content { display: none; }.footer-nav-icon {cursor: pointer;display: flex;align-items: center; justify-content: space-between;}.footer-nav-icon .accordion--icon { transition: transform 0.3s ease-in-out;}.footer-nav-icon.active .accordion--icon { transform: rotate(180deg);} }
