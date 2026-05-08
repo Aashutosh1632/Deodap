@@ -33,7 +33,8 @@
          ['scroll','click','touchstart','keydown','mousemove'].forEach(function(evt) {
            window.addEventListener(evt, _loadGA4, {once: true, passive: true});
          });
-         setTimeout(_loadGA4, 3000);
+         // Wait until the page is idle so GA4 doesn't compete with LCP/INP work.
+         setTimeout(_loadGA4, 8000);
       </script>
       {%- if template contains 'collection' and current_tags -%}
       <meta name="robots" content="noindex">
@@ -99,9 +100,14 @@
       {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
       {%- endunless -%}
       {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
-      {{ 'custom-css.css' | asset_url | stylesheet_tag: preload: true }}
+      {%- comment -%} custom-css.css (76 KB) and custom_mega_menu_css.css are non-critical above-the-fold — defer via media-print swap to unblock first paint. {%- endcomment -%}
+      <link rel="stylesheet" href="{{ 'custom-css.css' | asset_url }}" media="print" onload="this.media='all'">
       <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
-      {{ 'custom_mega_menu_css.css' | asset_url | stylesheet_tag: preload: true }}
+      <link rel="stylesheet" href="{{ 'custom_mega_menu_css.css' | asset_url }}" media="print" onload="this.media='all'">
+      <noscript>
+        <link rel="stylesheet" href="{{ 'custom-css.css' | asset_url }}">
+        <link rel="stylesheet" href="{{ 'custom_mega_menu_css.css' | asset_url }}">
+      </noscript>
       {%- unless template == 'index' or template == 'product' -%}
       <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" media="print" onload="this.media='all'">
       <noscript><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"></noscript>
@@ -178,11 +184,11 @@
           })(window,document,'script','dataLayer','GTM-5W7H98N');
         }
 
-        // Fire on first interaction OR after 3s (whichever comes first)
+        // Fire on first interaction OR after 8s idle fallback so GTM doesn't pile onto LCP/INP work
         ['scroll','click','touchstart','keydown','mousemove'].forEach(function(evt) {
           window.addEventListener(evt, _loadGTM, {once: true, passive: true});
         });
-        setTimeout(_loadGTM, 3000);
+        setTimeout(_loadGTM, 8000);
       </script>
       <!-- End Google Tag Manager -->
 
@@ -202,7 +208,7 @@
         ['scroll','click','touchstart'].forEach(function(evt) {
           window.addEventListener(evt, _loadClarity, {once: true, passive: true});
         });
-        setTimeout(_loadClarity, 5000);
+        setTimeout(_loadClarity, 10000);
       </script>
       <script>
       // Bing UET — load after GTM is ready (interaction-triggered)
@@ -224,7 +230,7 @@
       ['scroll','click','touchstart'].forEach(function(evt) {
         window.addEventListener(evt, _loadBingUET, {once: true, passive: true});
       });
-      setTimeout(_loadBingUET, 4000);
+      setTimeout(_loadBingUET, 9000);
     </script>
    </head>
    <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

@@ -1,7 +1,14 @@
-{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'custom-collection-list.css' | asset_url | stylesheet_tag }}
+{%- comment -%} Non-critical: deferred via media-print swap so they don't block first paint. Each section instance dedups in the browser. {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'section-collection-list.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'custom-collection-list.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="{{ 'section-collection-list.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'custom-collection-list.css' | asset_url }}">
+</noscript>
 {%- style -%}
   @media (max-width:768px){
   #shopify-section-{{ section.id }} {order: {{section.settings.order_no }}; } }.section-{{ section.id }}-padding {  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
@@ -45,6 +52,14 @@
         -%}
         {%- for block in section.blocks -%}
           {% assign hide_slide_mobile = block.settings.hide_this_slide_mobile %}
+          {%- comment -%} Only first 4 blocks load eagerly when section opts into priority. Beyond that, defer to free up bandwidth for the LCP image. {%- endcomment -%}
+          {%- if section.settings.image_fetchpriority and forloop.index <= 4 -%}
+            {%- assign block_loading = 'eager' -%}
+            {%- assign block_fetchpriority = 'high' -%}
+          {%- else -%}
+            {%- assign block_loading = 'lazy' -%}
+            {%- assign block_fetchpriority = 'low' -%}
+          {%- endif -%}
           <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="{% if hide_slide_mobile == true %}small-hide {% endif %}item-collection-{{ forloop.index }} collection-list__item grid__item {{ block.settings.custom_title | handle }} {% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: {{ forloop.index }};"{% endif %} {{ block.shopify_attributes }} >
             {%- assign custom_image = block.settings.custom_image -%}
             {%- assign custom_mobile_image = block.settings.custom_mobile_image -%}
@@ -68,13 +83,12 @@
                         {% capture sizes %} (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}), (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}), (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}), calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
                     {% endcapture %}
                 {%- if custom_mobile_image -%}
-                  
-                  {{ custom_mobile_image | image_url: width: 300 | image_tag: sizes: sizes, widths: '100, 150, 200, 300', loading: 'eager', fetchpriority: 'high', class: 'mobile-image' }}
+                  {{ custom_mobile_image | image_url: width: 300, format: 'webp' | image_tag: sizes: sizes, widths: '100, 150, 200, 300', loading: block_loading, fetchpriority: block_fetchpriority, class: 'mobile-image' }}
                 {%- endif -%}
                 {%- if custom_image -%}
-                  {{ custom_image | image_url: width: 250 | image_tag: sizes: sizes, widths: '250, 300, 350', loading: 'eager', fetchpriority: 'high', class: 'desktop-image' }}
+                  {{ custom_image | image_url: width: 250, format: 'webp' | image_tag: sizes: sizes, widths: '250, 300, 350', loading: block_loading, fetchpriority: block_fetchpriority, class: 'desktop-image' }}
                 {%- elsif block.settings.collection.featured_image -%}
-                  <img src="{{ block.settings.collection.featured_image | img_url: '' }}" alt="{{ block.settings.collection.title }}" class="collection-image desktop-image" loading="eager" fetchpriority="high">
+                  <img src="{{ block.settings.collection.featured_image | img_url: '' }}" alt="{{ block.settings.collection.title }}" class="collection-image desktop-image" loading="{{ block_loading }}" fetchpriority="{{ block_fetchpriority }}">
                 {%- endif -%}
                   <a href="{{ collection_url | default: block.settings.collection.url }}" class="custom-collection-link">
                     <span class="title-hide-mobile">{{ block.settings.custom_title }}</span>
