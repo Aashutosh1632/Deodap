@@ -1,3 +1,27 @@
+{%- liquid
+  assign first_block = section.blocks[0]
+  assign hero_desktop = first_block.settings.image
+  assign hero_mobile = first_block.settings.mobile_image | default: hero_desktop
+-%}
+
+{%- comment -%} Preload the LCP image so it starts downloading before HTML parsing reaches the <img>. {%- endcomment -%}
+{%- if hero_mobile != blank -%}
+  <link rel="preload" as="image"
+        href="{{ hero_mobile | image_url: width: 550, format: 'webp' }}"
+        imagesrcset="{{ hero_mobile | image_url: width: 375, format: 'webp' }} 375w, {{ hero_mobile | image_url: width: 550, format: 'webp' }} 550w"
+        imagesizes="100vw"
+        media="(max-width: 768px)"
+        fetchpriority="high">
+{%- endif -%}
+{%- if hero_desktop != blank -%}
+  <link rel="preload" as="image"
+        href="{{ hero_desktop | image_url: width: 1200, format: 'webp' }}"
+        imagesrcset="{{ hero_desktop | image_url: width: 750, format: 'webp' }} 750w, {{ hero_desktop | image_url: width: 1200, format: 'webp' }} 1200w"
+        imagesizes="100vw"
+        media="(min-width: 769px)"
+        fetchpriority="high">
+{%- endif -%}
+
 <link rel="stylesheet" href="{{ 'featured-cards-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="{{ 'featured-cards-carousel.css' | asset_url }}"></noscript>
 
@@ -14,8 +38,17 @@
       order: {{ section.settings.order_no }};
     }
   }
-  /* Reserve slide height to prevent CLS before Swiper initializes */
-  .featured-carousel .swiper-slide { aspect-ratio: 16 / 9; }
+  /* Reserve slide height to prevent CLS before Swiper initializes — uses real image ratio */
+  {%- if hero_desktop.width and hero_desktop.height -%}
+    .featured-carousel .swiper-slide { aspect-ratio: {{ hero_desktop.width }} / {{ hero_desktop.height }}; }
+  {%- else -%}
+    .featured-carousel .swiper-slide { aspect-ratio: 16 / 9; }
+  {%- endif -%}
+  {%- if hero_mobile.width and hero_mobile.height -%}
+    @media (max-width: 768px) {
+      .featured-carousel .swiper-slide { aspect-ratio: {{ hero_mobile.width }} / {{ hero_mobile.height }}; }
+    }
+  {%- endif -%}
   .featured-carousel .featured-card,
   .featured-carousel .featured-card-inner { height: 100%; }
 {%- endstyle -%}
@@ -40,19 +73,20 @@
             <a href="{{ block.settings.link }}">
 
               {%- if forloop.first -%}
-                {%- comment -%} First slide: single <picture> so the browser fetches only the matching image (saves ~one image download on every visit) {%- endcomment -%}
+                {%- comment -%} First slide: single <picture> so the browser fetches only the matching image (saves ~one image download on every visit). WebP forced to match the preload hint. {%- endcomment -%}
                 {%- if desktop_image != blank -%}
                   <picture>
                     {%- if block.settings.mobile_image != blank -%}
                       <source media="(max-width: 768px)"
-                              srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 550 }} 550w"
+                              srcset="{{ mobile_image | image_url: width: 375, format: 'webp' }} 375w, {{ mobile_image | image_url: width: 550, format: 'webp' }} 550w"
                               sizes="100vw"
                               width="{{ mobile_image.width }}"
-                              height="{{ mobile_image.height }}">
+                              height="{{ mobile_image.height }}"
+                              type="image/webp">
                     {%- endif -%}
                     <img
-                      src="{{ desktop_image | image_url: width: 1200 }}"
-                      srcset="{{ desktop_image | image_url: width: 750 }} 750w, {{ desktop_image | image_url: width: 1200 }} 1200w"
+                      src="{{ desktop_image | image_url: width: 1200, format: 'webp' }}"
+                      srcset="{{ desktop_image | image_url: width: 750, format: 'webp' }} 750w, {{ desktop_image | image_url: width: 1200, format: 'webp' }} 1200w"
                       sizes="100vw"
                       class="featured-img"
                       loading="eager"
